@@ -3,7 +3,7 @@
 benchname=$1
 
 ompflags='OMP_MAX_ACTIVE_LEVELS=8 OMP_WAIT_POLICY=active KMP_BLOCKTIME=infinite KMP_AFFINITY="granularity=core,compact" LIBOMP_NUM_HIDDEN_HELPER_THREADS=0'
-prefix_path="cmake-build-release/benchmarks"
+prefix_path="build/benchmarks"
 cpu_speed=1995
 
 mkdir -p raw_results/$benchname

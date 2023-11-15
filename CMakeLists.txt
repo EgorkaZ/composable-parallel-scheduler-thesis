@@ -5,8 +5,6 @@ option(ENABLE_TESTS "Enable test" OFF)
 # set(CMAKE_CXX_COMPILER "/opt/user/BiSheng-compiler-2.5.0/bin/clang++")
 # set(CMAKE_C_COMPILER "gcc")
 # set(CMAKE_CXX_COMPILER "g++")
-set(CMAKE_C_COMPILER "clang")
-set(CMAKE_CXX_COMPILER "clang++")
 
 project(composable-parallel-scheduler)
 
@@ -15,19 +13,13 @@ set(JEMALLOC_ROOT /home/vmatskev/local/jemalloc/5.3.0/)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -O3 -DNDEBUG -ffast-math")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -O3 -DNDEBUG -ffast-math -Wno-unknown-attributes")
 
 find_package(OpenMP)
 if (OPENMP_FOUND)
     set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
     set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
     set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
-endif()
-
-if (NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-  # use libstdc++ instead of libc++ for compatibility with google benchmark which is compiled with libstdc++
-  # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libstdc++")
-  # set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -stdlib=libstdc++")
 endif()
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
@@ -45,13 +37,16 @@ if (ENABLE_TESTS)
     # gtest
     find_package(GTest QUIET)
     if(NOT GTEST_FOUND)
-    FetchContent_Declare(
-        googletest
-        GIT_REPOSITORY https://github.com/google/googletest.git
-        GIT_TAG        release-1.12.0
-    )
-    FetchContent_MakeAvailable(googletest)
+      FetchContent_Declare(
+          googletest
+          GIT_REPOSITORY https://github.com/google/googletest.git
+          GIT_TAG        release-1.12.0
+          GIT_SHALLOW OFF
+          FIND_PACKAGE_ARGS NAMES GTest
+      )
+      FetchContent_MakeAvailable(googletest)
     endif()
+
 endif()
 
 # link with HPX
@@ -138,10 +133,10 @@ function(add_target target exec mode)
       if ($ENV{USE_LB4OMP})
         # tricky patch to prefer built openmp over system's
         # because for some reason rpatch looks like "/home/vorkdenis/miniconda3/envs/benchmarks/lib:/home/vorkdenis/diploma/composable-parallel-scheduler-thesis/cmake_deps/lb4omp-build/runtime/src"
-        add_custom_command(TARGET ${target}
-          POST_BUILD
-          COMMAND patchelf --replace-needed "libomp.so" "${FETCHCONTENT_BASE_DIR}/lb4omp-build/runtime/src/libomp.so" $<TARGET_FILE:${target}>
-        )
+        # add_custom_command(TARGET ${target}
+        #   POST_BUILD
+        #   COMMAND patchelf --replace-needed "libomp.so" "${FETCHCONTENT_BASE_DIR}/lb4omp-build/runtime/src/libomp.so" $<TARGET_FILE:${target}>
+        # )
         target_include_directories(${target} BEFORE PUBLIC ${FETCHCONTENT_BASE_DIR}/lb4omp-build/runtime/src)
         target_link_directories(${target} BEFORE PUBLIC ${FETCHCONTENT_BASE_DIR}/lb4omp-build/runtime/src)
       else()

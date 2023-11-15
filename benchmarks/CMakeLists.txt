@@ -1,9 +1,10 @@
 # benchmark
+message(STATUS "GOOGLETEST_PATH: ${GOOGLETEST_PATH}, BENCHMARK_ENABLE_TESTING: ${BENCHMARK_ENABLE_TESTING}, BENCHMARK_ENABLE_GTEST_TESTS: ${BENCHMARK_ENABLE_GTEST_TESTS}")
 find_package(benchmark QUIET)
 if(NOT benchmark_FOUND)
   FetchContent_Declare(googlebenchmark
           GIT_REPOSITORY https://github.com/google/benchmark.git
-          GIT_TAG v1.7.0) # need master for benchmark::benchmark
+          GIT_TAG v1.8.1) # need master for benchmark::benchmark
   FetchContent_MakeAvailable(
                   googlebenchmark)
 endif()
