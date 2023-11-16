@@ -1,9 +1,10 @@
 #!/bin/bash
 
 benchname=$1
+build_dir=${2:-build}
 
 ompflags='OMP_MAX_ACTIVE_LEVELS=8 OMP_WAIT_POLICY=active KMP_BLOCKTIME=infinite KMP_AFFINITY="granularity=core,compact" LIBOMP_NUM_HIDDEN_HELPER_THREADS=0'
-prefix_path="build/benchmarks"
+prefix_path="$build_dir/benchmarks"
 cpu_speed=1995
 
 mkdir -p raw_results/$benchname
