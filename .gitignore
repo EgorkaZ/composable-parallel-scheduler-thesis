@@ -4,6 +4,7 @@
 *.cbp
 .vscode
 env/
+.cache/
 
 # Google tests
 googletest-build/
@@ -18,6 +19,7 @@ cmake-build*
 cmake_install.cmake
 cmake_deps/
 build/
+build-gcc/
 
 # raw benchmark results
 raw_results/
