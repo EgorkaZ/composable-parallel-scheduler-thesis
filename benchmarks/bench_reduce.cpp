@@ -15,36 +15,35 @@ static void DoSetup(const benchmark::State &state) {
 }
 
 void __attribute__((noinline,noipa)) reduceImpl(std::vector<double> &data, size_t blocks, size_t blockSize) {
-  std::atomic_size_t blocks_left = blocks;
+  // std::atomic_size_t blocks_left = blocks;
 
-  std::thread snitch{[&blocks_left] {
-    auto start_time = std::chrono::steady_clock::now();
-    auto next_wake = start_time + std::chrono::milliseconds{100};
+  // std::thread snitch{[&blocks_left] {
+  //   auto start_time = std::chrono::steady_clock::now();
+  //   auto next_wake = start_time + std::chrono::milliseconds{100};
 
-    do {
-      std::this_thread::sleep_until(next_wake);
-      auto curr_blocks_left = blocks_left.load(std::memory_order_relaxed);
-      std::cout << "blocks remained: " << curr_blocks_left << " after " << std::chrono::duration_cast<std::chrono::milliseconds>(next_wake - start_time).count() << "ms" << std::endl;
-      next_wake += std::chrono::seconds{1};
-    } while(blocks_left.load(std::memory_order_relaxed) > 0);
-  }};
+  //   do {
+  //     std::this_thread::sleep_until(next_wake);
+  //     auto curr_blocks_left = blocks_left.load(std::memory_order_relaxed);
+  //     std::cout << "blocks remained: " << curr_blocks_left << " after " << std::chrono::duration_cast<std::chrono::milliseconds>(next_wake - start_time).count() << "ms" << std::endl;
+  //     next_wake += std::chrono::seconds{1};
+  //   } while(blocks_left.load(std::memory_order_relaxed) > 0);
+  // }};
   ParallelFor(0, blocks, [&](size_t i) {
-    static thread_local double res = 0;
-    benchmark::DoNotOptimize(res);
+    double res = 0;
     double sum = 0;
     auto start = i * blockSize;
     auto end = std::min(start + blockSize, MAX_SIZE);
     for (size_t j = start; j < end; ++j) {
       sum += data[j];
     }
-    res += sum;
-    blocks_left.fetch_sub(1, std::memory_order_relaxed);
+    benchmark::DoNotOptimize(res += sum);
+    // blocks_left.fetch_sub(1, std::memory_order_relaxed);
   });
-  snitch.join();
+  // snitch.join();
 }
 
 static void BM_ReduceBench(benchmark::State &state) {
-  static auto data = SPMV::GenVector<double>(MAX_SIZE);
+  auto data = SPMV::GenVector<double>(MAX_SIZE);
   benchmark::DoNotOptimize(data);
   auto blockSize = state.range(0) + GetNumThreads() + 3;
   auto blocks = (MAX_SIZE + blockSize - 1) / blockSize;
