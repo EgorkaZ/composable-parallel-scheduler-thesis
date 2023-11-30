@@ -1,5 +1,8 @@
 #include "../include/benchmarks/spmv.h"
+#include <atomic>
 #include <benchmark/benchmark.h>
+#include <chrono>
+#include <thread>
 
 #include "../include/parallel_for.h"
 
@@ -12,6 +15,18 @@ static void DoSetup(const benchmark::State &state) {
 }
 
 void __attribute__((noinline,noipa)) reduceImpl(std::vector<double> &data, size_t blocks, size_t blockSize) {
+  std::atomic_size_t blocks_left = blocks;
+
+  std::thread snitch{[&blocks_left] {
+    auto start_time = std::chrono::steady_clock::now();
+    auto next_wake = start_time + std::chrono::milliseconds{10};
+
+    do {
+      std::this_thread::sleep_until(next_wake);
+      auto curr_blocks_left = blocks_left.load(std::memory_order_relaxed);
+      std::cout << "blocks remained: " << curr_blocks_left << " after " << std::chrono::duration_cast<std::chrono::milliseconds>(next_wake - start_time).count() << " ms" << std::endl;
+    } while(blocks_left.load(std::memory_order_relaxed) > 0);
+  }};
   ParallelFor(0, blocks, [&](size_t i) {
     static thread_local double res = 0;
     benchmark::DoNotOptimize(res);
@@ -22,7 +37,9 @@ void __attribute__((noinline,noipa)) reduceImpl(std::vector<double> &data, size_
       sum += data[j];
     }
     res += sum;
+    blocks_left.fetch_sub(1, std::memory_order_relaxed);
   });
+  snitch.join();
 }
 
 static void BM_ReduceBench(benchmark::State &state) {
