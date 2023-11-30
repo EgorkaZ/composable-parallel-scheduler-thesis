@@ -61,7 +61,7 @@ endif()
 FetchContent_Declare(
   onetbb
   GIT_REPOSITORY https://github.com/oneapi-src/oneTBB.git
-  GIT_TAG v2021.8.0
+  GIT_TAG v2021.11.0
 )
 option(TBB_TEST OFF)
 FetchContent_MakeAvailable(onetbb)
@@ -110,6 +110,7 @@ if ($ENV{USE_LB4OMP})
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp")
 else()
   find_package(OpenMP REQUIRED)
+  message(STATUS "Found OpenMP at: ${OpenMP_CXX_LIB_NAMES}")
 endif()
 
 # list(APPEND MODES ${OMP_MODES} ${TBB_MODES} ${EIGEN_MODES} ${PROACTIVE_MODES})
@@ -120,6 +121,7 @@ list(APPEND MODES ${OMP_MODES} ${TBB_MODES} ${EIGEN_MODES} ${HPX_MODES})
 
 function(add_target target exec mode)
     add_executable(${target} ${exec})
+    target_include_directories(${target} PUBLIC "${CMAKE_CURRENT_FUNCTION_LIST_DIR}/include")
     if (mode MATCHES "^SERIAL")
       target_compile_definitions(${target} PRIVATE SERIAL=1)
     elseif (mode MATCHES "^PROACTIVE")
