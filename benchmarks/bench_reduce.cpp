@@ -19,12 +19,12 @@ void __attribute__((noinline,noipa)) reduceImpl(std::vector<double> &data, size_
 
   std::thread snitch{[&blocks_left] {
     auto start_time = std::chrono::steady_clock::now();
-    auto next_wake = start_time + std::chrono::seconds{1};
+    auto next_wake = start_time + std::chrono::milliseconds{100};
 
     do {
       std::this_thread::sleep_until(next_wake);
       auto curr_blocks_left = blocks_left.load(std::memory_order_relaxed);
-      std::cout << "blocks remained: " << curr_blocks_left << " after " << std::chrono::duration_cast<std::chrono::seconds>(next_wake - start_time).count() << "s" << std::endl;
+      std::cout << "blocks remained: " << curr_blocks_left << " after " << std::chrono::duration_cast<std::chrono::milliseconds>(next_wake - start_time).count() << "ms" << std::endl;
       next_wake += std::chrono::seconds{1};
     } while(blocks_left.load(std::memory_order_relaxed) > 0);
   }};
