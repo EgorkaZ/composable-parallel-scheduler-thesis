@@ -1,0 +1,124 @@
+{
+  "context": {
+    "date": "2023-12-01T05:19:51+03:00",
+    "host_name": "collab1",
+    "executable": "build-lb4omp/benchmarks/bench_spin_atomic_OMP_RUNTIME",
+    "num_cpus": 48,
+    "mhz_per_cpu": 2600,
+    "cpu_scaling_enabled": false,
+    "caches": [
+      {
+        "type": "Data",
+        "level": 1,
+        "size": 65536,
+        "num_sharing": 1
+      },
+      {
+        "type": "Instruction",
+        "level": 1,
+        "size": 65536,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 2,
+        "size": 524288,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 3,
+        "size": 25165824,
+        "num_sharing": 24
+      }
+    ],
+    "load_avg": [4.15,18.52,33.18],
+    "library_build_type": "release"
+  },
+  "benchmarks": [
+    {
+      "name": "Spin_ATOMIC_OMP_RUNTIME/tasks:1024/iters:32768/calls:1/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 0,
+      "run_name": "Spin_ATOMIC_OMP_RUNTIME/tasks:1024/iters:32768/calls:1/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 169,
+      "real_time": 9.4778906476698776e+03,
+      "cpu_time": 4.5703935810650885e+05,
+      "time_unit": "us"
+    },
+    {
+      "name": "Spin_ATOMIC_OMP_RUNTIME/tasks:48/iters:33554432/calls:1/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 1,
+      "run_name": "Spin_ATOMIC_OMP_RUNTIME/tasks:48/iters:33554432/calls:1/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 15,
+      "real_time": 4.5249129799717091e+04,
+      "cpu_time": 2.1436877560000010e+06,
+      "time_unit": "us"
+    },
+    {
+      "name": "Spin_ATOMIC_OMP_RUNTIME/tasks:8192/iters:262144/calls:1/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 2,
+      "run_name": "Spin_ATOMIC_OMP_RUNTIME/tasks:8192/iters:262144/calls:1/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 11,
+      "real_time": 5.4537284769621445e+04,
+      "cpu_time": 2.6181226072727256e+06,
+      "time_unit": "us"
+    },
+    {
+      "name": "Spin_ATOMIC_OMP_RUNTIME/tasks:65536/iters:32768/calls:1/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 3,
+      "run_name": "Spin_ATOMIC_OMP_RUNTIME/tasks:65536/iters:32768/calls:1/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 10,
+      "real_time": 5.5997091871003577e+04,
+      "cpu_time": 2.6851435290000010e+06,
+      "time_unit": "us"
+    },
+    {
+      "name": "Spin_ATOMIC_OMP_RUNTIME/tasks:48/iters:1/calls:1024/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 4,
+      "run_name": "Spin_ATOMIC_OMP_RUNTIME/tasks:48/iters:1/calls:1024/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 1.9189658159163691e+07,
+      "cpu_time": 9.2081500235000002e+08,
+      "time_unit": "us"
+    },
+    {
+      "name": "Spin_ATOMIC_OMP_RUNTIME/tasks:1048576/iters:1/calls:1/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 5,
+      "run_name": "Spin_ATOMIC_OMP_RUNTIME/tasks:1048576/iters:1/calls:1/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 12,
+      "real_time": 5.1300847291277540e+04,
+      "cpu_time": 2.4388145108333295e+06,
+      "time_unit": "us"
+    }
+  ]
+}

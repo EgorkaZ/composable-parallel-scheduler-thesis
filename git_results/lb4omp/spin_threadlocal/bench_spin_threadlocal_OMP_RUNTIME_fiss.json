@@ -1,0 +1,124 @@
+{
+  "context": {
+    "date": "2023-12-01T05:55:03+03:00",
+    "host_name": "collab1",
+    "executable": "build-lb4omp/benchmarks/bench_spin_threadlocal_OMP_RUNTIME",
+    "num_cpus": 48,
+    "mhz_per_cpu": 2600,
+    "cpu_scaling_enabled": false,
+    "caches": [
+      {
+        "type": "Data",
+        "level": 1,
+        "size": 65536,
+        "num_sharing": 1
+      },
+      {
+        "type": "Instruction",
+        "level": 1,
+        "size": 65536,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 2,
+        "size": 524288,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 3,
+        "size": 25165824,
+        "num_sharing": 24
+      }
+    ],
+    "load_avg": [47.81,28.93,19.06],
+    "library_build_type": "release"
+  },
+  "benchmarks": [
+    {
+      "name": "Spin_THREADLOCAL_OMP_RUNTIME/tasks:1024/iters:32768/calls:1/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 0,
+      "run_name": "Spin_THREADLOCAL_OMP_RUNTIME/tasks:1024/iters:32768/calls:1/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 166,
+      "real_time": 6.0935371133487897e+03,
+      "cpu_time": 2.9479112987951806e+05,
+      "time_unit": "us"
+    },
+    {
+      "name": "Spin_THREADLOCAL_OMP_RUNTIME/tasks:48/iters:33554432/calls:1/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 1,
+      "run_name": "Spin_THREADLOCAL_OMP_RUNTIME/tasks:48/iters:33554432/calls:1/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 29,
+      "real_time": 2.4137859279632048e+04,
+      "cpu_time": 1.1579752906896551e+06,
+      "time_unit": "us"
+    },
+    {
+      "name": "Spin_THREADLOCAL_OMP_RUNTIME/tasks:8192/iters:262144/calls:1/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 2,
+      "run_name": "Spin_THREADLOCAL_OMP_RUNTIME/tasks:8192/iters:262144/calls:1/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 24,
+      "real_time": 2.5834147855687155e+04,
+      "cpu_time": 1.2389984491666665e+06,
+      "time_unit": "us"
+    },
+    {
+      "name": "Spin_THREADLOCAL_OMP_RUNTIME/tasks:65536/iters:32768/calls:1/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 3,
+      "run_name": "Spin_THREADLOCAL_OMP_RUNTIME/tasks:65536/iters:32768/calls:1/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 22,
+      "real_time": 3.1811035034394361e+04,
+      "cpu_time": 1.5272125027272718e+06,
+      "time_unit": "us"
+    },
+    {
+      "name": "Spin_THREADLOCAL_OMP_RUNTIME/tasks:48/iters:1/calls:1024/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 4,
+      "run_name": "Spin_THREADLOCAL_OMP_RUNTIME/tasks:48/iters:1/calls:1024/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 1.2909217158320088e+07,
+      "cpu_time": 6.1944854994000006e+08,
+      "time_unit": "us"
+    },
+    {
+      "name": "Spin_THREADLOCAL_OMP_RUNTIME/tasks:1048576/iters:1/calls:1/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 5,
+      "run_name": "Spin_THREADLOCAL_OMP_RUNTIME/tasks:1048576/iters:1/calls:1/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 14,
+      "real_time": 5.4398521627186725e+04,
+      "cpu_time": 2.3416715128571470e+06,
+      "time_unit": "us"
+    }
+  ]
+}

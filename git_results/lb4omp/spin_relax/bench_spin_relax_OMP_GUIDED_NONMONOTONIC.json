@@ -1,0 +1,124 @@
+{
+  "context": {
+    "date": "2023-12-01T05:39:47+03:00",
+    "host_name": "collab1",
+    "executable": "build-lb4omp/benchmarks/bench_spin_relax_OMP_GUIDED_NONMONOTONIC",
+    "num_cpus": 48,
+    "mhz_per_cpu": 2600,
+    "cpu_scaling_enabled": false,
+    "caches": [
+      {
+        "type": "Data",
+        "level": 1,
+        "size": 65536,
+        "num_sharing": 1
+      },
+      {
+        "type": "Instruction",
+        "level": 1,
+        "size": 65536,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 2,
+        "size": 524288,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 3,
+        "size": 25165824,
+        "num_sharing": 24
+      }
+    ],
+    "load_avg": [34.61,12.13,16.84],
+    "library_build_type": "release"
+  },
+  "benchmarks": [
+    {
+      "name": "Spin_RELAX_OMP_GUIDED_NONMONOTONIC/tasks:1024/iters:1024/calls:1/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 0,
+      "run_name": "Spin_RELAX_OMP_GUIDED_NONMONOTONIC/tasks:1024/iters:1024/calls:1/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 121,
+      "real_time": 6.4261061171353895e+03,
+      "cpu_time": 3.0537976446280989e+05,
+      "time_unit": "us"
+    },
+    {
+      "name": "Spin_RELAX_OMP_GUIDED_NONMONOTONIC/tasks:48/iters:1048576/calls:1/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 1,
+      "run_name": "Spin_RELAX_OMP_GUIDED_NONMONOTONIC/tasks:48/iters:1048576/calls:1/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 59,
+      "real_time": 2.0903548184529394e+04,
+      "cpu_time": 1.0004926857627119e+06,
+      "time_unit": "us"
+    },
+    {
+      "name": "Spin_RELAX_OMP_GUIDED_NONMONOTONIC/tasks:8192/iters:8192/calls:1/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 2,
+      "run_name": "Spin_RELAX_OMP_GUIDED_NONMONOTONIC/tasks:8192/iters:8192/calls:1/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 37,
+      "real_time": 1.9199464492110445e+04,
+      "cpu_time": 9.3376218243243243e+05,
+      "time_unit": "us"
+    },
+    {
+      "name": "Spin_RELAX_OMP_GUIDED_NONMONOTONIC/tasks:65536/iters:1024/calls:1/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 3,
+      "run_name": "Spin_RELAX_OMP_GUIDED_NONMONOTONIC/tasks:65536/iters:1024/calls:1/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 33,
+      "real_time": 1.8730705447506196e+04,
+      "cpu_time": 9.0093645636363642e+05,
+      "time_unit": "us"
+    },
+    {
+      "name": "Spin_RELAX_OMP_GUIDED_NONMONOTONIC/tasks:48/iters:1/calls:1024/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 4,
+      "run_name": "Spin_RELAX_OMP_GUIDED_NONMONOTONIC/tasks:48/iters:1/calls:1024/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 1.5598917147189800e+07,
+      "cpu_time": 7.4853958371000004e+08,
+      "time_unit": "us"
+    },
+    {
+      "name": "Spin_RELAX_OMP_GUIDED_NONMONOTONIC/tasks:1048576/iters:1/calls:1/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 5,
+      "run_name": "Spin_RELAX_OMP_GUIDED_NONMONOTONIC/tasks:1048576/iters:1/calls:1/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 15,
+      "real_time": 5.4516424500063680e+04,
+      "cpu_time": 2.5907469606666612e+06,
+      "time_unit": "us"
+    }
+  ]
+}

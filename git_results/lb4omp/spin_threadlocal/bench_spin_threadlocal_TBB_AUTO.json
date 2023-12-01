@@ -1,0 +1,124 @@
+{
+  "context": {
+    "date": "2023-12-01T05:52:28+03:00",
+    "host_name": "collab1",
+    "executable": "build-lb4omp/benchmarks/bench_spin_threadlocal_TBB_AUTO",
+    "num_cpus": 48,
+    "mhz_per_cpu": 2600,
+    "cpu_scaling_enabled": false,
+    "caches": [
+      {
+        "type": "Data",
+        "level": 1,
+        "size": 65536,
+        "num_sharing": 1
+      },
+      {
+        "type": "Instruction",
+        "level": 1,
+        "size": 65536,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 2,
+        "size": 524288,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 3,
+        "size": 25165824,
+        "num_sharing": 24
+      }
+    ],
+    "load_avg": [37.05,16.06,13.87],
+    "library_build_type": "release"
+  },
+  "benchmarks": [
+    {
+      "name": "Spin_THREADLOCAL_TBB_AUTO/tasks:1024/iters:32768/calls:1/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 0,
+      "run_name": "Spin_THREADLOCAL_TBB_AUTO/tasks:1024/iters:32768/calls:1/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1928,
+      "real_time": 3.6541600324236998e+02,
+      "cpu_time": 1.7500301130705393e+04,
+      "time_unit": "us"
+    },
+    {
+      "name": "Spin_THREADLOCAL_TBB_AUTO/tasks:48/iters:33554432/calls:1/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 1,
+      "run_name": "Spin_THREADLOCAL_TBB_AUTO/tasks:48/iters:33554432/calls:1/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 52,
+      "real_time": 1.3757926791931153e+04,
+      "cpu_time": 6.3991245692307688e+05,
+      "time_unit": "us"
+    },
+    {
+      "name": "Spin_THREADLOCAL_TBB_AUTO/tasks:8192/iters:262144/calls:1/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 2,
+      "run_name": "Spin_THREADLOCAL_TBB_AUTO/tasks:8192/iters:262144/calls:1/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 34,
+      "real_time": 1.9181091783187305e+04,
+      "cpu_time": 9.1601543705882365e+05,
+      "time_unit": "us"
+    },
+    {
+      "name": "Spin_THREADLOCAL_TBB_AUTO/tasks:65536/iters:32768/calls:1/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 3,
+      "run_name": "Spin_THREADLOCAL_TBB_AUTO/tasks:65536/iters:32768/calls:1/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 35,
+      "real_time": 1.9897254904090340e+04,
+      "cpu_time": 9.3576918199999968e+05,
+      "time_unit": "us"
+    },
+    {
+      "name": "Spin_THREADLOCAL_TBB_AUTO/tasks:48/iters:1/calls:1024/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 4,
+      "run_name": "Spin_THREADLOCAL_TBB_AUTO/tasks:48/iters:1/calls:1024/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 13,
+      "real_time": 5.6368271508845566e+04,
+      "cpu_time": 2.7052033892307682e+06,
+      "time_unit": "us"
+    },
+    {
+      "name": "Spin_THREADLOCAL_TBB_AUTO/tasks:1048576/iters:1/calls:1/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 5,
+      "run_name": "Spin_THREADLOCAL_TBB_AUTO/tasks:1048576/iters:1/calls:1/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 74,
+      "real_time": 9.0362089904027926e+03,
+      "cpu_time": 2.3947304391891876e+05,
+      "time_unit": "us"
+    }
+  ]
+}
