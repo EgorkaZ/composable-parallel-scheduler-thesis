@@ -19,7 +19,7 @@ cmake-build*
 cmake_install.cmake
 cmake_deps/
 build/
-build-*/
+/build-*/
 
 # raw benchmark results
 #raw_results/
