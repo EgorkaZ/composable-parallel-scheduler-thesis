@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../parallel_for.h"
+#include "parlay/parallel.h"
 #include <algorithm>
 #include <cassert>
 #include <cmath>
@@ -10,6 +10,7 @@
 #include <type_traits>
 #include <utility>
 #include <vector>
+#include <iostream>
 
 #include <mutex>
 
@@ -52,7 +53,7 @@ void __attribute__((noinline, noipa))
 MultiplyMatrix(const SPMV::SparseMatrixCSR<T> &A, const std::vector<T> &x,
                std::vector<T> &out, size_t grainSize = 1) {
   assert(A.Dimensions.Columns == x.size());
-  ParallelFor(
+  parlay::parallel_for(
       0, A.Dimensions.Rows, [&](size_t i) { out[i] = MultiplyRow(A, x, i); },
       grainSize);
 }
@@ -61,7 +62,7 @@ template <typename T>
 void __attribute__((noinline, noipa))
 MultiplyMatrix(const SPMV::DenseMatrix<T> &A, const std::vector<T> &x,
                std::vector<T> &out, size_t grainSize = 1) {
-  ParallelFor(
+  parlay::parallel_for(
       0, A.Dimensions.Rows,
       [&](size_t i) {
         out[i] = 0;
@@ -75,10 +76,10 @@ template <typename T>
 void MultiplyMatrix(const SPMV::DenseMatrix<T> &A,
                     const SPMV::DenseMatrix<T> &B, SPMV::DenseMatrix<T> &out,
                     size_t grainSize = 1) {
-  ParallelFor(
+  parlay::parallel_for(
       0, out.Dimensions.Rows,
       [&](size_t row) {
-        ParallelFor(
+        parlay::parallel_for(
             0, out.Dimensions.Columns,
             [&](size_t col) {
               T sum{};
@@ -103,10 +104,10 @@ TransposeMatrix(SPMV::DenseMatrix<T> &input, SPMV::DenseMatrix<T> &out,
   auto blockRowSize = (input.Dimensions.Rows + blocksRows - 1) / blocksRows;
   auto blockColumnSize =
       (input.Dimensions.Columns + blocksColumns - 1) / blocksColumns;
-  ParallelFor(
+  parlay::parallel_for(
       0, blocksRows,
       [&](size_t row) {
-        ParallelFor(0, blocksColumns, [&](size_t column) {
+        parlay::parallel_for(0, blocksColumns, [&](size_t column) {
           auto fromRow = row * blockRowSize;
           auto fromCol = column * blockColumnSize;
           for (size_t i = fromRow;
@@ -281,6 +282,6 @@ template <typename T> DenseMatrix<T> GenDenseMatrix(size_t rows, size_t cols) {
 }
 
 inline const size_t MATRIX_SIZE =
-    (GetNumThreads() << 9) + (GetNumThreads() << 4) + 7;
+    (parlay::num_workers() << 9) + (parlay::num_workers() << 4) + 7;
 inline constexpr double DENSITY = 1.0 / STEP;
 } // namespace SPMV

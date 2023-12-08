@@ -2,19 +2,25 @@
 message(STATUS "GOOGLETEST_PATH: ${GOOGLETEST_PATH}, BENCHMARK_ENABLE_TESTING: ${BENCHMARK_ENABLE_TESTING}, BENCHMARK_ENABLE_GTEST_TESTS: ${BENCHMARK_ENABLE_GTEST_TESTS}")
 find_package(benchmark QUIET)
 if(NOT benchmark_FOUND)
-  FetchContent_Declare(googlebenchmark
-          GIT_REPOSITORY https://github.com/google/benchmark.git
-          GIT_TAG v1.8.1) # need master for benchmark::benchmark
-  FetchContent_MakeAvailable(
-                  googlebenchmark)
+    set(BENCHMARK_DOWNLOAD_DEPENDENCIES ON)
+    include(FetchContent)
+    set(HAVE_STD_REGEX TRUE)
+    FetchContent_Declare(
+        googlebenchmark
+        GIT_REPOSITORY https://github.com/google/benchmark.git
+        GIT_TAG v1.8.1) # need master for benchmark::benchmark
+    FetchContent_MakeAvailable(googlebenchmark)
 endif()
 
 list(APPEND BENCHMARKS bench_spmv_balanced bench_spmv_hyperbolic bench_spmv_triangle bench_reduce bench_scan bench_mmul bench_mtranspose)
 foreach(bench IN LISTS BENCHMARKS)
+    add_custom_target(${bench})
     foreach(mode IN LISTS MODES)
         set(target ${bench}_${mode})
         add_target(${target} ${bench}.cpp ${mode})
-        target_link_libraries(${target} benchmark::benchmark)
+        target_link_libraries(${target} PRIVATE benchmark::benchmark)
+
+        add_dependencies(${bench} ${target})
     endforeach()
 endforeach()
 
@@ -24,7 +30,7 @@ foreach(payload IN LISTS SPIN_PAYLOADS)
         string(TOLOWER ${payload} payload_lower)
         set(target bench_spin_${payload_lower}_${mode})
         add_target(${target} bench_spin.cpp ${mode})
-        target_link_libraries(${target} benchmark::benchmark)
+        target_link_libraries(${target} PRIVATE benchmark::benchmark)
         target_compile_definitions(${target} PRIVATE SPIN_PAYLOAD=${payload})
     endforeach()
 endforeach()
