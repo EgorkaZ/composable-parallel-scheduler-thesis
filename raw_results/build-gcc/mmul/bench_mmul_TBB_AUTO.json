@@ -1,0 +1,68 @@
+{
+  "context": {
+    "date": "2023-12-08T08:34:52+03:00",
+    "host_name": "collab1",
+    "executable": "build-gcc//benchmarks/bench_mmul_TBB_AUTO",
+    "num_cpus": 48,
+    "mhz_per_cpu": 2600,
+    "cpu_scaling_enabled": false,
+    "caches": [
+      {
+        "type": "Data",
+        "level": 1,
+        "size": 65536,
+        "num_sharing": 1
+      },
+      {
+        "type": "Instruction",
+        "level": 1,
+        "size": 65536,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 2,
+        "size": 524288,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 3,
+        "size": 25165824,
+        "num_sharing": 24
+      }
+    ],
+    "load_avg": [17.64,6.77,2.66],
+    "library_build_type": "release"
+  },
+  "benchmarks": [
+    {
+      "name": "MatrixMul_Latency_TBB_AUTO/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 0,
+      "run_name": "MatrixMul_Latency_TBB_AUTO/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 125,
+      "real_time": 5.8741732537746429e+03,
+      "cpu_time": 2.7218521375999996e+05,
+      "time_unit": "us"
+    },
+    {
+      "name": "MatrixMul_Throughput_TBB_AUTO/min_time:9.000/process_time/real_time",
+      "family_index": 1,
+      "per_family_instance_index": 0,
+      "run_name": "MatrixMul_Throughput_TBB_AUTO/min_time:9.000/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 2249,
+      "real_time": 5.6047005145721514e+03,
+      "cpu_time": 2.6471403083148069e+05,
+      "time_unit": "us"
+    }
+  ]
+}
