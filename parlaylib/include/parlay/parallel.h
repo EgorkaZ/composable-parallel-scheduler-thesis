@@ -12,6 +12,8 @@
 #include <type_traits>  // IWYU pragma: keep
 #include <utility>
 
+#include "internal/scheduler_plugins/common/initialization.h"
+
 // ----------------------------------------------------------------------------
 // All scheduler plugins are required to implement the
 // following four functions to integrate with parlay:
@@ -44,6 +46,34 @@ inline void parallel_for(size_t start, size_t end, F&& f, long granularity = 0,
 //    conservative uses a safer scheduler
 template <typename Lf, typename Rf>
 inline void par_do(Lf&& left, Rf&& right, bool conservative = false);
+
+inline void init_plugin_internal();
+
+namespace internal {
+
+inline void warmup(size_t threadsNum) {
+  #if !defined(OMP_MODE) or OMP_MODE != OMP_RUNTIME
+  SpinBarrier barrier(threadsNum);
+  parallel_for(0, threadsNum, [&barrier](size_t) {
+    barrier.Notify();
+    barrier.Wait(); // wait for all threads to start
+  });
+  #else
+  static InitOnce warmup{[threadsNum]() {
+    parallel_for(0, threadsNum * threadsNum, [](size_t) {
+      for (size_t i = 0; i != 1000000; ++i) {
+        // do nothing
+        CpuRelax();
+      }
+    });
+  }};
+  #endif
+}
+}
+inline void init_plugin() {
+  init_plugin_internal();
+  static internal::InitOnce warmup{[] { internal::warmup(num_workers()); }};
+}
 
 // ----------------------------------------------------------------------------
 //          Extra functions implemented on top of the four basic ones
@@ -131,6 +161,9 @@ static void par_do3_if(bool do_parallel, Lf&& left, Mf&& mid, Rf&& right) {
 #elif defined(PARLAY_TBB)
 #include "internal/scheduler_plugins/tbb.h"         // IWYU pragma: keep, export
 
+#elif defined(PARLAY_EIGEN)
+#include "internal/scheduler_plugins/eigen.h"       // IWYU pragma: keep, export
+
 // No Parallelism
 #elif defined(PARLAY_SEQUENTIAL)
 #include "internal/scheduler_plugins/sequential.h"  // IWYU pragma: keep, export
@@ -146,7 +179,7 @@ static void par_do3_if(bool do_parallel, Lf&& left, Mf&& mid, Rf&& right) {
 
 
 namespace parlay {
-  
+
 namespace internal {
 
 #ifdef _MSC_VER

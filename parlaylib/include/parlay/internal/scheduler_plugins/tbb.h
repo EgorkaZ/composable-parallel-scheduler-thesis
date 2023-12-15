@@ -9,7 +9,9 @@
 #include <tbb/parallel_for.h>
 #include <tbb/parallel_invoke.h>
 #include <tbb/task_arena.h>
-#include "modes.h"
+
+#include "common/tbb_pinner.h"
+#include "eigen/modes.h"
 
 namespace parlay {
 
@@ -80,6 +82,12 @@ inline void par_do(Lf&& left, Rf&& right, bool) {
   static_assert(std::is_invocable_v<Lf&&>);
   static_assert(std::is_invocable_v<Rf&&>);
   tbb::parallel_invoke(std::forward<Lf>(left), std::forward<Rf>(right));
+}
+
+inline void init_plugin_internal() {
+  static PinningObserver pinner; // just init observer
+  static tbb::global_control threadLimit(
+      tbb::global_control::max_allowed_parallelism, num_workers());
 }
 
 template <typename... Fs>

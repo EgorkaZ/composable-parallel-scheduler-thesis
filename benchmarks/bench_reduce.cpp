@@ -4,14 +4,14 @@
 #include <chrono>
 #include <thread>
 
-#include "../include/parallel_for.h"
+#include "parlay/parallel.h"
 
 static const size_t MAX_SIZE = (GetNumThreads() << 19) + (GetNumThreads() << 3) + 3;
 // static constexpr size_t BLOCK_SIZE = 1 << 14;
 // static constexpr size_t blocks = (MAX_SIZE + BLOCK_SIZE - 1) / BLOCK_SIZE;
 
 static void DoSetup(const benchmark::State &state) {
-  InitParallel(GetNumThreads());
+  parlay::init_plugin();
 }
 
 void __attribute__((noinline,noipa)) reduceImpl(std::vector<double> &data, size_t blocks, size_t blockSize) {
@@ -28,7 +28,7 @@ void __attribute__((noinline,noipa)) reduceImpl(std::vector<double> &data, size_
   //     next_wake += std::chrono::seconds{1};
   //   } while(blocks_left.load(std::memory_order_relaxed) > 0);
   // }};
-  ParallelFor(0, blocks, [&](size_t i) {
+  parlay::parallel_for(0, blocks, [&](size_t i) {
     double res = 0;
     double sum = 0;
     auto start = i * blockSize;

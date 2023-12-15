@@ -15,10 +15,12 @@ if (${USE_LB4OMP})
     set(USE_OMP ON)
 endif()
 option(USE_TBB "Use oneTBB" OFF)
+option(USE_EIGEN "Use Eigen" OFF)
 
 message(STATUS "Use OpenMP: ${USE_OMP}")
 message(STATUS "Use LB4OMP: ${USE_LB4OMP}")
 message(STATUS "Use oneTBB: ${USE_TBB}")
+message(STATUS "Use Eigen:  ${USE_EIGEN}")
 
 set(MODES)
 
@@ -62,9 +64,9 @@ endif()
 
 if (${USE_TBB})
     message(STATUS "------------------------- oneTBB dependency -------------------------")
-    if (NOT ${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU")
-        message(FATAL_ERROR "OneTBB breaks on ARM if not built with gcc")
-    endif()
+    # if (NOT ${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU")
+    #     message(FATAL_ERROR "OneTBB breaks on ARM if not built with gcc")
+    # endif()
 
     include(FetchContent)
     FetchContent_Declare(
@@ -79,9 +81,15 @@ if (${USE_TBB})
     list(APPEND MODES TBB_SIMPLE TBB_AUTO TBB_AFFINITY TBB_CONST_AFFINITY)
 endif()
 
+if (${USE_EIGEN})
+    message(STATUS "------------------------- Eigen dependency -------------------------")
+    list(APPEND MODES EIGEN_SIMPLE EIGEN_TIMESPAN EIGEN_TIMESPAN_GRAINSIZE EIGEN_STATIC)
+endif()
+
 # --------------------- Setup parlay ----------------------------
 set(PARLAY_OPENMP ${USE_OMP})
 set(PARLAY_TBB ${USE_TBB})
+set(PARLAY_EIGEN ${USE_EIGEN})
 add_subdirectory(parlaylib)
 
 # --------------- Setup definition by backend -------------------

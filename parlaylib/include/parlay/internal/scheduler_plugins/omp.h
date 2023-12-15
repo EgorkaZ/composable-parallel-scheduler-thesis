@@ -15,6 +15,10 @@
 
 #include <type_traits>
 #include <utility>
+#include <cassert>
+
+#include "common/initialization.h"
+#include "eigen/util.h"
 
 namespace parlay {
 
@@ -42,6 +46,7 @@ inline void parallel_for(size_t start, size_t end, F&& f, long granularity, bool
     }
   }
   else if (!omp_in_parallel()) {
+    assert(false);
     #pragma omp parallel
     {
       #pragma omp single
@@ -117,6 +122,11 @@ inline void par_do(Lf&& left, Rf&& right, bool) {
       { std::forward<Lf>(left)(); }
     }
   }
+}
+
+inline void init_plugin_internal() {
+  auto threadsNum = num_workers();
+  static internal::InitOnce ompInit{[threadsNum] { omp_set_num_threads(static_cast<int>(threadsNum)); }};
 }
 
 template <typename... Fs>

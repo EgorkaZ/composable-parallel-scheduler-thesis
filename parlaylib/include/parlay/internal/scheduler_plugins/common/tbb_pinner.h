@@ -1,6 +1,6 @@
 #pragma once
 
-#include "util.h"
+#include "parlay/internal/scheduler_plugins/eigen/util.h"
 #include <iostream>
 #include <sched.h>
 #include <tbb/tbb.h>

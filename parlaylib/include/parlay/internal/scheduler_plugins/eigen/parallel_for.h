@@ -180,19 +180,6 @@ inline void InitParallel(size_t threadsNum) {
     });
   }};
 #endif
-#ifdef TBB_MODE
-  static PinningObserver pinner; // just init observer
-  static tbb::global_control threadLimit(
-      tbb::global_control::max_allowed_parallelism, threadsNum);
-#endif
-#ifdef OMP_MODE
-  static InitOnce ompInit{[threadsNum]() { omp_set_num_threads(threadsNum); }};
-#endif
-#ifdef EIGEN_MODE
-#if EIGEN_MODE != EIGEN_RAPID
-  static EigenPinner pinner(threadsNum);
-#endif
-#endif
 #if OMP_MODE == OMP_RUNTIME
   // lb4omp doesn't work well with barrier :(
   static InitOnce warmup{[threadsNum]() {

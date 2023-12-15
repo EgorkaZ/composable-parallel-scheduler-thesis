@@ -5,6 +5,7 @@
 
 #include <functional>
 #include <utility>
+#include "../../parallel.h"
 
 namespace parlay {
 
@@ -35,6 +36,8 @@ inline void par_do(Lf&& left, Rf&& right, bool) {
   std::forward<Lf>(left)();
   std::forward<Rf>(right)();
 }
+
+inline void init_plugin_internal() {}
 
 template <typename F>
 void execute_with_scheduler(unsigned int, F&& f) {

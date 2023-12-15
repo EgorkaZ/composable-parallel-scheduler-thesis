@@ -5,7 +5,7 @@
 #ifdef EIGEN_MODE
 
 #define EIGEN_USE_THREADS
-#include "eigen/nonblocking_thread_pool.h"
+#include "nonblocking_thread_pool.h"
 
 #if EIGEN_MODE == EIGEN_RAPID
 inline auto EigenPool =

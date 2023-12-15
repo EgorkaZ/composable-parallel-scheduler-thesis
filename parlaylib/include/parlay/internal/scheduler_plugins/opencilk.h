@@ -4,6 +4,7 @@
 #include <cstddef>
 
 #include <type_traits>
+#include "../../parallel.h"
 
 #include <cilk/cilk.h>
 #include <cilk/cilk_api.h>
@@ -45,6 +46,8 @@ inline void parallel_for(size_t start, size_t end, F&& f, long granularity, bool
     cilk_sync;
   }
 }
+
+inline void init_plugin_internal() {}
 
 template <typename... Fs>
 void execute_with_scheduler(Fs...) {

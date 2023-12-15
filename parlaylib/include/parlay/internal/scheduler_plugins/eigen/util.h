@@ -1,5 +1,4 @@
 #pragma once
-#include "eigen_pool.h"
 #include "modes.h"
 #include "num_threads.h"
 
@@ -12,25 +11,6 @@
 // for rdtsc
 #include "x86intrin.h"
 #endif
-
-using ThreadId = int;
-
-inline ThreadId GetThreadIndex() {
-  thread_local static int id = [] {
-#if defined(TBB_MODE)
-    return tbb::this_task_arena::current_thread_index();
-#elif defined(OMP_MODE)
-    return omp_get_thread_num();
-#elif defined(SERIAL)
-    return 0;
-#elif defined(EIGEN_MODE)
-    return EigenPool.CurrentThreadId();
-#else
-#error "Unsupported mode"
-#endif
-  }();
-  return id;
-}
 
 using Timestamp = uint64_t;
 // using Timestamp = std::chrono::system_clock::time_point;

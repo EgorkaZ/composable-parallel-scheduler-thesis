@@ -1,12 +1,12 @@
 #include "../include/benchmarks/spmv.h"
 #include <benchmark/benchmark.h>
 
-#include "../include/parallel_for.h"
+#include "parlay/parallel.h"
 
 static const size_t MATRIX_SIZE_HERE = (GetNumThreads() << 3) + (GetNumThreads()) + 7;
 
-static void DoSetup(const benchmark::State &state) {
-  InitParallel(GetNumThreads());
+static void DoSetup(const benchmark::State &) {
+  parlay::init_plugin();
 }
 
 static auto left = SPMV::GenDenseMatrix<double>(MATRIX_SIZE_HERE, MATRIX_SIZE_HERE);

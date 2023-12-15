@@ -64,11 +64,11 @@ public:
   virtual void Cancel() {}
 
   // Returns the number of threads in the pool.
-  virtual int NumThreads() const = 0;
+  virtual size_t NumThreads() const = 0;
 
   // Returns a logical thread index between 0 and NumThreads() - 1 if called
   // from one of the threads in the pool. Returns -1 otherwise.
-  virtual int CurrentThreadId() const = 0;
+  virtual size_t CurrentThreadId() const = 0;
 
   virtual ~ThreadPoolInterface() {}
 };
@@ -212,9 +212,9 @@ public:
 #endif
   }
 
-  int NumThreads() const final { return num_threads_; }
+  size_t NumThreads() const final { return num_threads_; }
 
-  int CurrentThreadId() const final {
+  size_t CurrentThreadId() const final {
     const PerThread *pt = const_cast<ThreadPoolTempl *>(this)->GetPerThread();
     if (pt->pool == this) {
       return pt->thread_id;

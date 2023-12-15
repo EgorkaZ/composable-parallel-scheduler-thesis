@@ -1,6 +1,7 @@
 #pragma once
 #include "intrusive_ptr.h"
 #include "num_threads.h"
+#include "thread_index.h"
 #include "util.h"
 #include <array>
 #include <atomic>
