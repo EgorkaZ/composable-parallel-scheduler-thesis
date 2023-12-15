@@ -1,8 +1,8 @@
 {
   "context": {
-    "date": "2023-12-08T08:35:11+03:00",
+    "date": "2023-12-08T14:37:50+03:00",
     "host_name": "collab1",
-    "executable": "build-gcc//benchmarks/bench_mmul_TBB_CONST_AFFINITY",
+    "executable": "build-lb4omp//benchmarks/bench_mtranspose_OMP_RUNTIME",
     "num_cpus": 48,
     "mhz_per_cpu": 2600,
     "cpu_scaling_enabled": false,
@@ -32,36 +32,36 @@
         "num_sharing": 24
       }
     ],
-    "load_avg": [26.19,9.42,3.63],
+    "load_avg": [75.5,56.09,49.27],
     "library_build_type": "release"
   },
   "benchmarks": [
     {
-      "name": "MatrixMul_Latency_TBB_CONST_AFFINITY/process_time/real_time",
+      "name": "MatrixTranspose_Latency_OMP_RUNTIME/process_time/real_time",
       "family_index": 0,
       "per_family_instance_index": 0,
-      "run_name": "MatrixMul_Latency_TBB_CONST_AFFINITY/process_time/real_time",
+      "run_name": "MatrixTranspose_Latency_OMP_RUNTIME/process_time/real_time",
       "run_type": "iteration",
       "repetitions": 1,
       "repetition_index": 0,
       "threads": 1,
-      "iterations": 126,
-      "real_time": 5.7472346261853263e+03,
-      "cpu_time": 2.6792644111111108e+05,
+      "iterations": 4,
+      "real_time": 1.5999545039920957e+05,
+      "cpu_time": 3.8567966999999997e+06,
       "time_unit": "us"
     },
     {
-      "name": "MatrixMul_Throughput_TBB_CONST_AFFINITY/min_time:9.000/process_time/real_time",
+      "name": "MatrixTranspose_Throughput_OMP_RUNTIME/min_time:9.000/process_time/real_time",
       "family_index": 1,
       "per_family_instance_index": 0,
-      "run_name": "MatrixMul_Throughput_TBB_CONST_AFFINITY/min_time:9.000/process_time/real_time",
+      "run_name": "MatrixTranspose_Throughput_OMP_RUNTIME/min_time:9.000/process_time/real_time",
       "run_type": "iteration",
       "repetitions": 1,
       "repetition_index": 0,
       "threads": 1,
-      "iterations": 2232,
-      "real_time": 5.6462323253032982e+03,
-      "cpu_time": 2.6582716081989248e+05,
+      "iterations": 81,
+      "real_time": 1.4308621126640297e+05,
+      "cpu_time": 3.4303035872839512e+06,
       "time_unit": "us"
     }
   ]

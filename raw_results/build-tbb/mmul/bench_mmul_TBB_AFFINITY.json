@@ -1,8 +1,8 @@
 {
   "context": {
-    "date": "2023-12-08T08:35:31+03:00",
+    "date": "2023-12-15T07:36:58+03:00",
     "host_name": "collab1",
-    "executable": "build-gcc//benchmarks/bench_mmul_TBB_SIMPLE",
+    "executable": "build-tbb/benchmarks/bench_mmul_TBB_AFFINITY",
     "num_cpus": 48,
     "mhz_per_cpu": 2600,
     "cpu_scaling_enabled": false,
@@ -32,36 +32,36 @@
         "num_sharing": 24
       }
     ],
-    "load_avg": [32.38,11.92,4.57],
+    "load_avg": [48.01,30.16,13.7],
     "library_build_type": "release"
   },
   "benchmarks": [
     {
-      "name": "MatrixMul_Latency_TBB_SIMPLE/process_time/real_time",
+      "name": "MatrixMul_Latency_TBB_AFFINITY/process_time/real_time",
       "family_index": 0,
       "per_family_instance_index": 0,
-      "run_name": "MatrixMul_Latency_TBB_SIMPLE/process_time/real_time",
+      "run_name": "MatrixMul_Latency_TBB_AFFINITY/process_time/real_time",
       "run_type": "iteration",
       "repetitions": 1,
       "repetition_index": 0,
       "threads": 1,
-      "iterations": 119,
-      "real_time": 6.1513294129311535e+03,
-      "cpu_time": 2.8354692680672271e+05,
+      "iterations": 102,
+      "real_time": 7.0245002999025237e+03,
+      "cpu_time": 3.3535549264705880e+05,
       "time_unit": "us"
     },
     {
-      "name": "MatrixMul_Throughput_TBB_SIMPLE/min_time:9.000/process_time/real_time",
+      "name": "MatrixMul_Throughput_TBB_AFFINITY/min_time:9.000/process_time/real_time",
       "family_index": 1,
       "per_family_instance_index": 0,
-      "run_name": "MatrixMul_Throughput_TBB_SIMPLE/min_time:9.000/process_time/real_time",
+      "run_name": "MatrixMul_Throughput_TBB_AFFINITY/min_time:9.000/process_time/real_time",
       "run_type": "iteration",
       "repetitions": 1,
       "repetition_index": 0,
       "threads": 1,
-      "iterations": 2075,
-      "real_time": 6.0791361349892904e+03,
-      "cpu_time": 2.8499585968192772e+05,
+      "iterations": 1794,
+      "real_time": 7.0270987013676759e+03,
+      "cpu_time": 3.3553365062987729e+05,
       "time_unit": "us"
     }
   ]

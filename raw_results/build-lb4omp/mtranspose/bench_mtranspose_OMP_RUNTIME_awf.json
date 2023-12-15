@@ -1,8 +1,8 @@
 {
   "context": {
-    "date": "2023-12-15T07:35:36+03:00",
+    "date": "2023-12-08T14:41:27+03:00",
     "host_name": "collab1",
-    "executable": "build-lb4omp/benchmarks/bench_mmul_OMP_RUNTIME",
+    "executable": "build-lb4omp//benchmarks/bench_mtranspose_OMP_RUNTIME",
     "num_cpus": 48,
     "mhz_per_cpu": 2600,
     "cpu_scaling_enabled": false,
@@ -32,36 +32,36 @@
         "num_sharing": 24
       }
     ],
-    "load_avg": [46.27,24.47,10.55],
+    "load_avg": [79.33,68.97,56.02],
     "library_build_type": "release"
   },
   "benchmarks": [
     {
-      "name": "MatrixMul_Latency_OMP_RUNTIME/process_time/real_time",
+      "name": "MatrixTranspose_Latency_OMP_RUNTIME/process_time/real_time",
       "family_index": 0,
       "per_family_instance_index": 0,
-      "run_name": "MatrixMul_Latency_OMP_RUNTIME/process_time/real_time",
+      "run_name": "MatrixTranspose_Latency_OMP_RUNTIME/process_time/real_time",
       "run_type": "iteration",
       "repetitions": 1,
       "repetition_index": 0,
       "threads": 1,
-      "iterations": 54,
-      "real_time": 1.3300537759743116e+04,
-      "cpu_time": 6.3991664833333332e+05,
+      "iterations": 352,
+      "real_time": 5.0382211326678625e+03,
+      "cpu_time": 2.1652306372159088e+05,
       "time_unit": "us"
     },
     {
-      "name": "MatrixMul_Throughput_OMP_RUNTIME/min_time:9.000/process_time/real_time",
+      "name": "MatrixTranspose_Throughput_OMP_RUNTIME/min_time:9.000/process_time/real_time",
       "family_index": 1,
       "per_family_instance_index": 0,
-      "run_name": "MatrixMul_Throughput_OMP_RUNTIME/min_time:9.000/process_time/real_time",
+      "run_name": "MatrixTranspose_Throughput_OMP_RUNTIME/min_time:9.000/process_time/real_time",
       "run_type": "iteration",
       "repetitions": 1,
       "repetition_index": 0,
       "threads": 1,
-      "iterations": 639,
-      "real_time": 2.2317484295552473e+04,
-      "cpu_time": 1.0711241171048512e+06,
+      "iterations": 1189,
+      "real_time": 2.4105423034736425e+04,
+      "cpu_time": 7.6006931172413786e+05,
       "time_unit": "us"
     }
   ]
