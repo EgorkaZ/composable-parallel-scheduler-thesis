@@ -1,13 +1,13 @@
 #include <benchmark/benchmark.h>
 
-#include "../include/benchmarks/spmv.h"
-#include "../include/parallel_for.h"
+#include "benchmarks/spmv.h"
+#include "parlay/parallel.h"
 #include <unordered_map>
 
 using namespace SPMV;
 
 static void DoSetup(const benchmark::State &state) {
-  InitParallel(GetNumThreads());
+  parlay::init_plugin();
 }
 
 static constexpr auto width =
@@ -17,13 +17,13 @@ static auto cachedMatrix = [] {
   std::unordered_map<size_t, SparseMatrixCSR<double>> res;
   for (auto &&w : width) {
     res[w] =
-        GenSparseMatrix<double, SparseKind::TRIANGLE>(MATRIX_SIZE, w + (GetNumThreads() << 2) + 3, DENSITY);
+        GenSparseMatrix<double, SparseKind::TRIANGLE>(MATRIX_SIZE, w + (parlay::num_workers() << 2) + 3, DENSITY);
     benchmark::DoNotOptimize(res[w]);
   }
   return res;
 }();
 
-static auto cachedVector = GenVector<double>(*std::prev(width.end()) + (GetNumThreads() << 2) + 3);
+static auto cachedVector = GenVector<double>(*std::prev(width.end()) + (parlay::num_workers() << 2) + 3);
 static std::vector<double> cachedResult(MATRIX_SIZE);
 
 static void BM_SpmvBenchTriangle(benchmark::State &state) {

@@ -1,7 +1,7 @@
 
-#include "../include/parallel_for.h"
+#include "parlay/parallel.h"
 
-#include "../include/trace.h"
+#include "parlay/internal/scheduler_plugins/eigen/trace.h"
 
 #include <atomic>
 #include <chrono>
@@ -20,7 +20,7 @@ static void RunSpin(size_t threadNum, Tracing::Tracer &tracer) {
 }
 
 int main(int argc, char **argv) {
-  auto threadNum = GetNumThreads();
+  auto threadNum = parlay::num_workers();
   InitParallel(threadNum);
 
   Tracing::Tracer tracer;

@@ -64,7 +64,7 @@ struct Task {
   // currently 0.99 percentile for maximums is used: 99% of iterations should
   // fit scheduling in timespan
 #if defined(__x86_64__)
-    if (GetNumThreads() == 48) {
+    if (Eigen::internal::GetNumThreads() == 48) {
       return 16500;
     }
     return 13500;
@@ -223,7 +223,7 @@ void ParallelFor(size_t from, size_t to, F func) {
       from,
       to,
       std::move(func),
-      SplitData{.Threads = {0, static_cast<size_t>(GetNumThreads())},
+      SplitData{.Threads = {0, static_cast<size_t>(Eigen::internal::GetNumThreads())},
                 .GrainSize = 1},
       GetThreadIndex()};
   task();

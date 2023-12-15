@@ -1,12 +1,12 @@
-#include "../include/benchmarks/spmv.h"
 #include <benchmark/benchmark.h>
 
-#include "../include/parallel_for.h"
+#include "benchmarks/spmv.h"
+#include "parlay/parallel.h"
 
-static const size_t MATRIX_SIZE = (GetNumThreads() << 4) + GetNumThreads();
+static const size_t MATRIX_SIZE = (parlay::num_workers() << 4) + parlay::num_workers();
 
 static void DoSetup(const benchmark::State &state) {
-  InitParallel(GetNumThreads());
+  parlay::init_plugin();
 }
 
 static void BM_MatrixTranspose(benchmark::State &state) {

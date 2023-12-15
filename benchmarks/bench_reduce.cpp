@@ -1,4 +1,4 @@
-#include "../include/benchmarks/spmv.h"
+#include "benchmarks/spmv.h"
 #include <atomic>
 #include <benchmark/benchmark.h>
 #include <chrono>
@@ -6,7 +6,7 @@
 
 #include "parlay/parallel.h"
 
-static const size_t MAX_SIZE = (GetNumThreads() << 19) + (GetNumThreads() << 3) + 3;
+static const size_t MAX_SIZE = (parlay::num_workers() << 19) + (parlay::num_workers() << 3) + 3;
 // static constexpr size_t BLOCK_SIZE = 1 << 14;
 // static constexpr size_t blocks = (MAX_SIZE + BLOCK_SIZE - 1) / BLOCK_SIZE;
 
@@ -45,7 +45,7 @@ void __attribute__((noinline,noipa)) reduceImpl(std::vector<double> &data, size_
 static void BM_ReduceBench(benchmark::State &state) {
   auto data = SPMV::GenVector<double>(MAX_SIZE);
   benchmark::DoNotOptimize(data);
-  auto blockSize = state.range(0) + GetNumThreads() + 3;
+  auto blockSize = state.range(0) + parlay::num_workers() + 3;
   auto blocks = (MAX_SIZE + blockSize - 1) / blockSize;
   for (auto _ : state) {
     reduceImpl(data, blocks, blockSize);

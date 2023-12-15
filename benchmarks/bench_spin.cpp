@@ -1,8 +1,8 @@
 #include <benchmark/benchmark.h>
 
-#include "../include/parallel_for.h"
-#include "../include/trace.h"
-#include "../include/benchmarks/spmv.h"
+#include "parlay/parallel.h"
+#include "benchmarks/spmv.h"
+#include "parlay/internal/scheduler_plugins/eigen/trace.h"
 #include <fstream>
 #include <iostream>
 
@@ -12,7 +12,7 @@
 #define THREADLOCAL 4
 
 static void DoSetup(const benchmark::State &state) {
-  InitParallel(GetNumThreads());
+  parlay::init_plugin();
 }
 
 namespace {
@@ -102,7 +102,7 @@ static void BM_Spin(benchmark::State &state) {
 #endif
   // std::ofstream out(std::string("Spin_") + GetSpinPayload() + "_" +
   //                   GetParallelMode() + ".json");
-  // out << tracer.ToJson(GetNumThreads());
+  // out << tracer.ToJson(parlay::num_workers());
 }
 
 static constexpr size_t ScaleIterations(size_t count) {
@@ -122,10 +122,10 @@ BENCHMARK(BM_Spin)
     ->MeasureProcessCPUTime()
     ->ArgNames({"tasks", "iters", "calls"})
     ->Args({1 << 10, ScaleIterations(1 << 10), 1})         // few small tasks
-    ->Args({GetNumThreads(), ScaleIterations(1 << 20), 1}) // few big tasks
+    ->Args({static_cast<int>(parlay::num_workers()), ScaleIterations(1 << 20), 1}) // few big tasks
     ->Args({1 << 13, ScaleIterations(1 << 13), 1}) // something in between
     ->Args({1 << 16, ScaleIterations(1 << 10), 1}) // many small tasks
-    ->Args({GetNumThreads(), 1, 1024}) // multiple small parallel for runs
+    ->Args({static_cast<int>(parlay::num_workers()), 1, 1024}) // multiple small parallel for runs
     ->Args({1 << 20, 1, 1})            // as in the scan benchmarks
     ->Unit(benchmark::kMicrosecond);
 

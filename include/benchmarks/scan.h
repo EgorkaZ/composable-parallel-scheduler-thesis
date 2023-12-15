@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../parallel_for.h"
+#include "parlay/parallel.h"
 #include <cassert>
 #include <vector>
 
@@ -22,7 +22,7 @@ template <typename T> void __attribute__((noinline,noipa)) Scan(size_t size_pow,
   for (size_t d = 0; d != size_pow; d++) {
     auto shift = (1 << (d + 1));
     auto limit = (size + shift - 1) / shift;
-    ParallelFor(0, limit, [&](size_t i) {
+    parlay::parallel_for(0, limit, [&](size_t i) {
       auto k = 0 + i * shift;
       if (k + shift - 1 < size) {
         data[k + shift - 1] += data[k + (shift >> 1) - 1];
@@ -34,7 +34,7 @@ template <typename T> void __attribute__((noinline,noipa)) Scan(size_t size_pow,
   for (int64_t d = size_pow; d >= 0; d--) {
     auto shift = (1 << (d + 1));
     auto limit = (size + shift - 1) / shift;
-    ParallelFor(0, limit, [&](size_t i) {
+    parlay::parallel_for(0, limit, [&](size_t i) {
       auto k = 0 + i * shift;
       auto t = data[k + (shift >> 1) - 1];
       if (k + shift - 1 < size) {

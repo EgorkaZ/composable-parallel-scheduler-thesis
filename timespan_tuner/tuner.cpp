@@ -1,4 +1,4 @@
-#include "../include/parallel_for.h"
+#include "parlay/parallel.h"
 #include <ctime>
 #include <vector>
 
@@ -36,7 +36,7 @@ static size_t PercentileIndex(double pc, size_t size) {
 }
 
 int main() {
-  auto threadNum = GetNumThreads();
+  auto threadNum = parlay::num_workers();
   InitParallel(threadNum);
   constexpr size_t ITERATIONS = 10000;
 

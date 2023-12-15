@@ -1,13 +1,13 @@
-#include "../include/benchmarks/scan.h"
-#include "../include/benchmarks/spmv.h"
+#include "benchmarks/scan.h"
+#include "benchmarks/spmv.h"
 #include <benchmark/benchmark.h>
 
-#include "../include/parallel_for.h"
+#include "parlay/parallel.h"
 
 static constexpr size_t SIZE_POW = 24;
 
 static void DoSetup(const benchmark::State &state) {
-  InitParallel(GetNumThreads());
+  parlay::init_plugin();
 }
 
 static void BM_ScanBench(benchmark::State &state) {
