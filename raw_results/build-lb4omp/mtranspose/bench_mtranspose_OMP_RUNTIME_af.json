@@ -1,8 +1,8 @@
 {
   "context": {
-    "date": "2023-12-08T14:41:59+03:00",
+    "date": "2023-12-15T11:51:56+03:00",
     "host_name": "collab1",
-    "executable": "build-lb4omp//benchmarks/bench_mtranspose_OMP_RUNTIME",
+    "executable": "build-lb4omp/benchmarks/bench_mtranspose_OMP_RUNTIME",
     "num_cpus": 48,
     "mhz_per_cpu": 2600,
     "cpu_scaling_enabled": false,
@@ -32,7 +32,7 @@
         "num_sharing": 24
       }
     ],
-    "load_avg": [80.24,70.18,56.89],
+    "load_avg": [48.58,29.72,14.38],
     "library_build_type": "release"
   },
   "benchmarks": [
@@ -45,9 +45,9 @@
       "repetitions": 1,
       "repetition_index": 0,
       "threads": 1,
-      "iterations": 4,
-      "real_time": 1.6999476002444088e+05,
-      "cpu_time": 4.8616495549999997e+06,
+      "iterations": 296,
+      "real_time": 2.2345502455706142e+03,
+      "cpu_time": 1.0702584260135135e+05,
       "time_unit": "us"
     },
     {
@@ -59,9 +59,9 @@
       "repetitions": 1,
       "repetition_index": 0,
       "threads": 1,
-      "iterations": 100,
-      "real_time": 9.8225609935647532e+04,
-      "cpu_time": 2.5657229333999995e+06,
+      "iterations": 5251,
+      "real_time": 2.2844027980944502e+03,
+      "cpu_time": 1.0968761067415732e+05,
       "time_unit": "us"
     }
   ]
