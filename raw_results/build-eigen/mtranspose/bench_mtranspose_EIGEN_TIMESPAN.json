@@ -1,8 +1,8 @@
 {
   "context": {
-    "date": "2023-12-15T14:41:47+03:00",
+    "date": "2023-12-15T14:38:31+03:00",
     "host_name": "collab1",
-    "executable": "build-lb4omp/benchmarks/bench_mtranspose_OMP_RUNTIME",
+    "executable": "build-eigen/benchmarks/bench_mtranspose_EIGEN_TIMESPAN",
     "num_cpus": 48,
     "mhz_per_cpu": 2600,
     "cpu_scaling_enabled": false,
@@ -32,36 +32,36 @@
         "num_sharing": 24
       }
     ],
-    "load_avg": [47.27,25.5,10.38],
+    "load_avg": [20.09,5.07,1.7],
     "library_build_type": "release"
   },
   "benchmarks": [
     {
-      "name": "MatrixTranspose_Latency_OMP_RUNTIME/process_time/real_time",
+      "name": "MatrixTranspose_Latency_EIGEN_TIMESPAN/process_time/real_time",
       "family_index": 0,
       "per_family_instance_index": 0,
-      "run_name": "MatrixTranspose_Latency_OMP_RUNTIME/process_time/real_time",
+      "run_name": "MatrixTranspose_Latency_EIGEN_TIMESPAN/process_time/real_time",
       "run_type": "iteration",
       "repetitions": 1,
       "repetition_index": 0,
       "threads": 1,
-      "iterations": 204,
-      "real_time": 3.5223906460678040e+03,
-      "cpu_time": 1.6938181985294117e+05,
+      "iterations": 3387,
+      "real_time": 2.0529471991142455e+02,
+      "cpu_time": 9.3927240419250065e+03,
       "time_unit": "us"
     },
     {
-      "name": "MatrixTranspose_Throughput_OMP_RUNTIME/min_time:9.000/process_time/real_time",
+      "name": "MatrixTranspose_Throughput_EIGEN_TIMESPAN/min_time:9.000/process_time/real_time",
       "family_index": 1,
       "per_family_instance_index": 0,
-      "run_name": "MatrixTranspose_Throughput_OMP_RUNTIME/min_time:9.000/process_time/real_time",
+      "run_name": "MatrixTranspose_Throughput_EIGEN_TIMESPAN/min_time:9.000/process_time/real_time",
       "run_type": "iteration",
       "repetitions": 1,
       "repetition_index": 0,
       "threads": 1,
-      "iterations": 3248,
-      "real_time": 3.9986987461332678e+03,
-      "cpu_time": 1.9181499539100984e+05,
+      "iterations": 60267,
+      "real_time": 2.0943575729694450e+02,
+      "cpu_time": 9.5931852279025006e+03,
       "time_unit": "us"
     }
   ]
