@@ -1,6 +1,6 @@
 {
   "context": {
-    "date": "2023-12-15T14:42:41+03:00",
+    "date": "2023-12-22T00:34:58+03:00",
     "host_name": "collab1",
     "executable": "build-tbb/benchmarks/bench_mtranspose_TBB_AUTO",
     "num_cpus": 48,
@@ -32,7 +32,7 @@
         "num_sharing": 24
       }
     ],
-    "load_avg": [47.06,29.15,12.5],
+    "load_avg": [48.41,46.83,44.35],
     "library_build_type": "release"
   },
   "benchmarks": [
@@ -45,9 +45,9 @@
       "repetitions": 1,
       "repetition_index": 0,
       "threads": 1,
-      "iterations": 3341,
-      "real_time": 2.0824390608762704e+02,
-      "cpu_time": 9.6041626608799761e+03,
+      "iterations": 3337,
+      "real_time": 2.0775388494236654e+02,
+      "cpu_time": 9.5695978693437210e+03,
       "time_unit": "us"
     },
     {
@@ -59,9 +59,9 @@
       "repetitions": 1,
       "repetition_index": 0,
       "threads": 1,
-      "iterations": 59571,
-      "real_time": 2.1265958084400708e+02,
-      "cpu_time": 9.8314938916586925e+03,
+      "iterations": 58491,
+      "real_time": 2.1363953022254037e+02,
+      "cpu_time": 9.7982524278948895e+03,
       "time_unit": "us"
     }
   ]

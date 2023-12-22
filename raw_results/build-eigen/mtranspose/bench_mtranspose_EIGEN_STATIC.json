@@ -1,6 +1,6 @@
 {
   "context": {
-    "date": "2023-12-15T14:38:15+03:00",
+    "date": "2023-12-22T00:30:44+03:00",
     "host_name": "collab1",
     "executable": "build-eigen/benchmarks/bench_mtranspose_EIGEN_STATIC",
     "num_cpus": 48,
@@ -32,7 +32,7 @@
         "num_sharing": 24
       }
     ],
-    "load_avg": [10.48,2.34,0.76],
+    "load_avg": [47.11,44.6,43.06],
     "library_build_type": "release"
   },
   "benchmarks": [
@@ -45,9 +45,9 @@
       "repetitions": 1,
       "repetition_index": 0,
       "threads": 1,
-      "iterations": 3364,
-      "real_time": 2.0306402419938357e+02,
-      "cpu_time": 9.2775869233055873e+03,
+      "iterations": 3513,
+      "real_time": 2.0107472310295512e+02,
+      "cpu_time": 9.1924156276686590e+03,
       "time_unit": "us"
     },
     {
@@ -59,9 +59,9 @@
       "repetitions": 1,
       "repetition_index": 0,
       "threads": 1,
-      "iterations": 61048,
-      "real_time": 2.0732791035276335e+02,
-      "cpu_time": 9.4747467517363402e+03,
+      "iterations": 61286,
+      "real_time": 2.0487204101005082e+02,
+      "cpu_time": 9.3772045181607555e+03,
       "time_unit": "us"
     }
   ]
