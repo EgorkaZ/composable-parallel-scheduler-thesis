@@ -1,0 +1,68 @@
+{
+  "context": {
+    "date": "2023-12-22T00:26:12+03:00",
+    "host_name": "collab1",
+    "executable": "build-lb4omp/benchmarks/bench_mmul_OMP_GUIDED_NONMONOTONIC",
+    "num_cpus": 48,
+    "mhz_per_cpu": 2600,
+    "cpu_scaling_enabled": false,
+    "caches": [
+      {
+        "type": "Data",
+        "level": 1,
+        "size": 65536,
+        "num_sharing": 1
+      },
+      {
+        "type": "Instruction",
+        "level": 1,
+        "size": 65536,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 2,
+        "size": 524288,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 3,
+        "size": 25165824,
+        "num_sharing": 24
+      }
+    ],
+    "load_avg": [45.17,39.79,41.37],
+    "library_build_type": "release"
+  },
+  "benchmarks": [
+    {
+      "name": "MatrixMul_Latency_OMP_GUIDED_NONMONOTONIC/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 0,
+      "run_name": "MatrixMul_Latency_OMP_GUIDED_NONMONOTONIC/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 41,
+      "real_time": 1.6272333011659028e+04,
+      "cpu_time": 7.8426052658536576e+05,
+      "time_unit": "us"
+    },
+    {
+      "name": "MatrixMul_Throughput_OMP_GUIDED_NONMONOTONIC/min_time:9.000/process_time/real_time",
+      "family_index": 1,
+      "per_family_instance_index": 0,
+      "run_name": "MatrixMul_Throughput_OMP_GUIDED_NONMONOTONIC/min_time:9.000/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 521,
+      "real_time": 2.5507742679337203e+04,
+      "cpu_time": 1.2243625247984647e+06,
+      "time_unit": "us"
+    }
+  ]
+}
