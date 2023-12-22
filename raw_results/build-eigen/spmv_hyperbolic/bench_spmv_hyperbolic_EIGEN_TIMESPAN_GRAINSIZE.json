@@ -1,0 +1,208 @@
+{
+  "context": {
+    "date": "2023-12-22T02:55:20+03:00",
+    "host_name": "collab1",
+    "executable": "build-eigen/benchmarks/bench_spmv_hyperbolic_EIGEN_TIMESPAN_GRAINSIZE",
+    "num_cpus": 48,
+    "mhz_per_cpu": 2600,
+    "cpu_scaling_enabled": false,
+    "caches": [
+      {
+        "type": "Data",
+        "level": 1,
+        "size": 65536,
+        "num_sharing": 1
+      },
+      {
+        "type": "Instruction",
+        "level": 1,
+        "size": 65536,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 2,
+        "size": 524288,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 3,
+        "size": 25165824,
+        "num_sharing": 24
+      }
+    ],
+    "load_avg": [48.87,45.68,38.73],
+    "library_build_type": "release"
+  },
+  "benchmarks": [
+    {
+      "name": "SpmvHyperbolic_Latency_EIGEN_TIMESPAN_GRAINSIZE/width:4096/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 0,
+      "run_name": "SpmvHyperbolic_Latency_EIGEN_TIMESPAN_GRAINSIZE/width:4096/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 500,
+      "real_time": 1.4030231180962769e+03,
+      "cpu_time": 6.7718281899999958e+04,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvHyperbolic_Latency_EIGEN_TIMESPAN_GRAINSIZE/width:8192/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 1,
+      "run_name": "SpmvHyperbolic_Latency_EIGEN_TIMESPAN_GRAINSIZE/width:8192/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 235,
+      "real_time": 2.9739986058984023e+03,
+      "cpu_time": 1.4290853046808520e+05,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvHyperbolic_Latency_EIGEN_TIMESPAN_GRAINSIZE/width:16384/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 2,
+      "run_name": "SpmvHyperbolic_Latency_EIGEN_TIMESPAN_GRAINSIZE/width:16384/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 122,
+      "real_time": 5.7453566270057563e+03,
+      "cpu_time": 2.7537590565573727e+05,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvHyperbolic_Latency_EIGEN_TIMESPAN_GRAINSIZE/width:32768/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 3,
+      "run_name": "SpmvHyperbolic_Latency_EIGEN_TIMESPAN_GRAINSIZE/width:32768/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 52,
+      "real_time": 1.3395177205816948e+04,
+      "cpu_time": 6.4602425211538374e+05,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvHyperbolic_Latency_EIGEN_TIMESPAN_GRAINSIZE/width:65536/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 4,
+      "run_name": "SpmvHyperbolic_Latency_EIGEN_TIMESPAN_GRAINSIZE/width:65536/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 26,
+      "real_time": 2.8678914142524685e+04,
+      "cpu_time": 1.3811095226923095e+06,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvHyperbolic_Latency_EIGEN_TIMESPAN_GRAINSIZE/width:131072/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 5,
+      "run_name": "SpmvHyperbolic_Latency_EIGEN_TIMESPAN_GRAINSIZE/width:131072/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 11,
+      "real_time": 6.0428001219309990e+04,
+      "cpu_time": 2.8792588718181793e+06,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvHyperbolic_Throughput_EIGEN_TIMESPAN_GRAINSIZE/width:4096/min_time:9.000/process_time/real_time",
+      "family_index": 1,
+      "per_family_instance_index": 0,
+      "run_name": "SpmvHyperbolic_Throughput_EIGEN_TIMESPAN_GRAINSIZE/width:4096/min_time:9.000/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 9019,
+      "real_time": 1.3709680353001329e+03,
+      "cpu_time": 6.5725196173633434e+04,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvHyperbolic_Throughput_EIGEN_TIMESPAN_GRAINSIZE/width:8192/min_time:9.000/process_time/real_time",
+      "family_index": 1,
+      "per_family_instance_index": 1,
+      "run_name": "SpmvHyperbolic_Throughput_EIGEN_TIMESPAN_GRAINSIZE/width:8192/min_time:9.000/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 4256,
+      "real_time": 2.7873098868792422e+03,
+      "cpu_time": 1.3372830589050759e+05,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvHyperbolic_Throughput_EIGEN_TIMESPAN_GRAINSIZE/width:16384/min_time:9.000/process_time/real_time",
+      "family_index": 1,
+      "per_family_instance_index": 2,
+      "run_name": "SpmvHyperbolic_Throughput_EIGEN_TIMESPAN_GRAINSIZE/width:16384/min_time:9.000/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 2206,
+      "real_time": 5.4592871762516179e+03,
+      "cpu_time": 2.6215412735720753e+05,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvHyperbolic_Throughput_EIGEN_TIMESPAN_GRAINSIZE/width:32768/min_time:9.000/process_time/real_time",
+      "family_index": 1,
+      "per_family_instance_index": 3,
+      "run_name": "SpmvHyperbolic_Throughput_EIGEN_TIMESPAN_GRAINSIZE/width:32768/min_time:9.000/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 945,
+      "real_time": 1.3332929201314464e+04,
+      "cpu_time": 6.3992988516402151e+05,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvHyperbolic_Throughput_EIGEN_TIMESPAN_GRAINSIZE/width:65536/min_time:9.000/process_time/real_time",
+      "family_index": 1,
+      "per_family_instance_index": 4,
+      "run_name": "SpmvHyperbolic_Throughput_EIGEN_TIMESPAN_GRAINSIZE/width:65536/min_time:9.000/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 467,
+      "real_time": 2.6599679341120216e+04,
+      "cpu_time": 1.2764542081156315e+06,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvHyperbolic_Throughput_EIGEN_TIMESPAN_GRAINSIZE/width:131072/min_time:9.000/process_time/real_time",
+      "family_index": 1,
+      "per_family_instance_index": 5,
+      "run_name": "SpmvHyperbolic_Throughput_EIGEN_TIMESPAN_GRAINSIZE/width:131072/min_time:9.000/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 211,
+      "real_time": 5.9672348215112135e+04,
+      "cpu_time": 2.8638316205213298e+06,
+      "time_unit": "us"
+    }
+  ]
+}

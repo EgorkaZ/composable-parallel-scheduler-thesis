@@ -1,0 +1,208 @@
+{
+  "context": {
+    "date": "2023-12-22T03:27:00+03:00",
+    "host_name": "collab1",
+    "executable": "build-tbb/benchmarks/bench_spmv_hyperbolic_TBB_AFFINITY",
+    "num_cpus": 48,
+    "mhz_per_cpu": 2600,
+    "cpu_scaling_enabled": false,
+    "caches": [
+      {
+        "type": "Data",
+        "level": 1,
+        "size": 65536,
+        "num_sharing": 1
+      },
+      {
+        "type": "Instruction",
+        "level": 1,
+        "size": 65536,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 2,
+        "size": 524288,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 3,
+        "size": 25165824,
+        "num_sharing": 24
+      }
+    ],
+    "load_avg": [25.81,35.37,36.98],
+    "library_build_type": "release"
+  },
+  "benchmarks": [
+    {
+      "name": "SpmvHyperbolic_Latency_TBB_AFFINITY/width:4096/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 0,
+      "run_name": "SpmvHyperbolic_Latency_TBB_AFFINITY/width:4096/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 366,
+      "real_time": 1.9077242662509282e+03,
+      "cpu_time": 9.1226812349726781e+04,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvHyperbolic_Latency_TBB_AFFINITY/width:8192/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 1,
+      "run_name": "SpmvHyperbolic_Latency_TBB_AFFINITY/width:8192/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 185,
+      "real_time": 3.7871323324538566e+03,
+      "cpu_time": 1.8080394567567576e+05,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvHyperbolic_Latency_TBB_AFFINITY/width:16384/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 2,
+      "run_name": "SpmvHyperbolic_Latency_TBB_AFFINITY/width:16384/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 95,
+      "real_time": 7.3575632744713830e+03,
+      "cpu_time": 3.4962318315789447e+05,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvHyperbolic_Latency_TBB_AFFINITY/width:32768/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 3,
+      "run_name": "SpmvHyperbolic_Latency_TBB_AFFINITY/width:32768/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 48,
+      "real_time": 1.4625759407257041e+04,
+      "cpu_time": 6.9173825645833334e+05,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvHyperbolic_Latency_TBB_AFFINITY/width:65536/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 4,
+      "run_name": "SpmvHyperbolic_Latency_TBB_AFFINITY/width:65536/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 24,
+      "real_time": 2.9246831933657330e+04,
+      "cpu_time": 1.3767651658333335e+06,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvHyperbolic_Latency_TBB_AFFINITY/width:131072/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 5,
+      "run_name": "SpmvHyperbolic_Latency_TBB_AFFINITY/width:131072/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 11,
+      "real_time": 6.5087680112231865e+04,
+      "cpu_time": 3.0519154900000039e+06,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvHyperbolic_Throughput_TBB_AFFINITY/width:4096/min_time:9.000/process_time/real_time",
+      "family_index": 1,
+      "per_family_instance_index": 0,
+      "run_name": "SpmvHyperbolic_Throughput_TBB_AFFINITY/width:4096/min_time:9.000/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 6610,
+      "real_time": 1.8030609270492948e+03,
+      "cpu_time": 8.5856765373676244e+04,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvHyperbolic_Throughput_TBB_AFFINITY/width:8192/min_time:9.000/process_time/real_time",
+      "family_index": 1,
+      "per_family_instance_index": 1,
+      "run_name": "SpmvHyperbolic_Throughput_TBB_AFFINITY/width:8192/min_time:9.000/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 3882,
+      "real_time": 3.2321613057411437e+03,
+      "cpu_time": 1.5414886801391037e+05,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvHyperbolic_Throughput_TBB_AFFINITY/width:16384/min_time:9.000/process_time/real_time",
+      "family_index": 1,
+      "per_family_instance_index": 2,
+      "run_name": "SpmvHyperbolic_Throughput_TBB_AFFINITY/width:16384/min_time:9.000/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 2006,
+      "real_time": 6.5807937844057506e+03,
+      "cpu_time": 3.0167185806081764e+05,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvHyperbolic_Throughput_TBB_AFFINITY/width:32768/min_time:9.000/process_time/real_time",
+      "family_index": 1,
+      "per_family_instance_index": 3,
+      "run_name": "SpmvHyperbolic_Throughput_TBB_AFFINITY/width:32768/min_time:9.000/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1042,
+      "real_time": 1.2111893381329965e+04,
+      "cpu_time": 5.7153504079654545e+05,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvHyperbolic_Throughput_TBB_AFFINITY/width:65536/min_time:9.000/process_time/real_time",
+      "family_index": 1,
+      "per_family_instance_index": 4,
+      "run_name": "SpmvHyperbolic_Throughput_TBB_AFFINITY/width:65536/min_time:9.000/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 439,
+      "real_time": 2.8880378787229707e+04,
+      "cpu_time": 1.3610256172665148e+06,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvHyperbolic_Throughput_TBB_AFFINITY/width:131072/min_time:9.000/process_time/real_time",
+      "family_index": 1,
+      "per_family_instance_index": 5,
+      "run_name": "SpmvHyperbolic_Throughput_TBB_AFFINITY/width:131072/min_time:9.000/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 194,
+      "real_time": 6.4914992040733698e+04,
+      "cpu_time": 3.0353837556185536e+06,
+      "time_unit": "us"
+    }
+  ]
+}
