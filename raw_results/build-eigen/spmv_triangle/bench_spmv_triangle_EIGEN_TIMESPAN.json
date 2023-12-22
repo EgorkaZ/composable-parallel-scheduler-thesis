@@ -1,0 +1,208 @@
+{
+  "context": {
+    "date": "2023-12-22T03:41:18+03:00",
+    "host_name": "collab1",
+    "executable": "build-eigen/benchmarks/bench_spmv_triangle_EIGEN_TIMESPAN",
+    "num_cpus": 48,
+    "mhz_per_cpu": 2600,
+    "cpu_scaling_enabled": false,
+    "caches": [
+      {
+        "type": "Data",
+        "level": 1,
+        "size": 65536,
+        "num_sharing": 1
+      },
+      {
+        "type": "Instruction",
+        "level": 1,
+        "size": 65536,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 2,
+        "size": 524288,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 3,
+        "size": 25165824,
+        "num_sharing": 24
+      }
+    ],
+    "load_avg": [48.62,45.01,40.64],
+    "library_build_type": "release"
+  },
+  "benchmarks": [
+    {
+      "name": "SpmvTriangle_Latency_EIGEN_TIMESPAN/width:4096/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 0,
+      "run_name": "SpmvTriangle_Latency_EIGEN_TIMESPAN/width:4096/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 283,
+      "real_time": 2.7114148465534086e+03,
+      "cpu_time": 1.2979267056537107e+05,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvTriangle_Latency_EIGEN_TIMESPAN/width:8192/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 1,
+      "run_name": "SpmvTriangle_Latency_EIGEN_TIMESPAN/width:8192/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 117,
+      "real_time": 5.9911827888473363e+03,
+      "cpu_time": 2.8711090837606968e+05,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvTriangle_Latency_EIGEN_TIMESPAN/width:16384/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 2,
+      "run_name": "SpmvTriangle_Latency_EIGEN_TIMESPAN/width:16384/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 60,
+      "real_time": 1.1653338313575763e+04,
+      "cpu_time": 5.5984981083333504e+05,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvTriangle_Latency_EIGEN_TIMESPAN/width:32768/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 3,
+      "run_name": "SpmvTriangle_Latency_EIGEN_TIMESPAN/width:32768/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 34,
+      "real_time": 2.0604607800950813e+04,
+      "cpu_time": 9.8813624676469818e+05,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvTriangle_Latency_EIGEN_TIMESPAN/width:65536/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 4,
+      "run_name": "SpmvTriangle_Latency_EIGEN_TIMESPAN/width:65536/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 28,
+      "real_time": 2.4808965675788648e+04,
+      "cpu_time": 1.1829043967857161e+06,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvTriangle_Latency_EIGEN_TIMESPAN/width:131072/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 5,
+      "run_name": "SpmvTriangle_Latency_EIGEN_TIMESPAN/width:131072/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 19,
+      "real_time": 3.6582300478906196e+04,
+      "cpu_time": 1.7431882236842045e+06,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvTriangle_Throughput_EIGEN_TIMESPAN/width:4096/min_time:9.000/process_time/real_time",
+      "family_index": 1,
+      "per_family_instance_index": 0,
+      "run_name": "SpmvTriangle_Throughput_EIGEN_TIMESPAN/width:4096/min_time:9.000/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 5323,
+      "real_time": 2.1535186749350692e+03,
+      "cpu_time": 1.0321459872064622e+05,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvTriangle_Throughput_EIGEN_TIMESPAN/width:8192/min_time:9.000/process_time/real_time",
+      "family_index": 1,
+      "per_family_instance_index": 1,
+      "run_name": "SpmvTriangle_Throughput_EIGEN_TIMESPAN/width:8192/min_time:9.000/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 2126,
+      "real_time": 5.8842166514430501e+03,
+      "cpu_time": 2.8236293834430864e+05,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvTriangle_Throughput_EIGEN_TIMESPAN/width:16384/min_time:9.000/process_time/real_time",
+      "family_index": 1,
+      "per_family_instance_index": 2,
+      "run_name": "SpmvTriangle_Throughput_EIGEN_TIMESPAN/width:16384/min_time:9.000/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1032,
+      "real_time": 1.2217853643705044e+04,
+      "cpu_time": 5.8639359105620161e+05,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvTriangle_Throughput_EIGEN_TIMESPAN/width:32768/min_time:9.000/process_time/real_time",
+      "family_index": 1,
+      "per_family_instance_index": 3,
+      "run_name": "SpmvTriangle_Throughput_EIGEN_TIMESPAN/width:32768/min_time:9.000/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 733,
+      "real_time": 2.1058372450984592e+04,
+      "cpu_time": 1.0033862577489769e+06,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvTriangle_Throughput_EIGEN_TIMESPAN/width:65536/min_time:9.000/process_time/real_time",
+      "family_index": 1,
+      "per_family_instance_index": 4,
+      "run_name": "SpmvTriangle_Throughput_EIGEN_TIMESPAN/width:65536/min_time:9.000/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 543,
+      "real_time": 2.3223853257210445e+04,
+      "cpu_time": 1.1145863201841628e+06,
+      "time_unit": "us"
+    },
+    {
+      "name": "SpmvTriangle_Throughput_EIGEN_TIMESPAN/width:131072/min_time:9.000/process_time/real_time",
+      "family_index": 1,
+      "per_family_instance_index": 5,
+      "run_name": "SpmvTriangle_Throughput_EIGEN_TIMESPAN/width:131072/min_time:9.000/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 346,
+      "real_time": 3.6398895747632123e+04,
+      "cpu_time": 1.7478048689884371e+06,
+      "time_unit": "us"
+    }
+  ]
+}
