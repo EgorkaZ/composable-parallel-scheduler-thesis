@@ -1,0 +1,68 @@
+{
+  "context": {
+    "date": "2023-12-26T15:37:53+03:00",
+    "host_name": "collab1",
+    "executable": "build-iomp//benchmarks/bench_mtranspose_OMP_GUIDED_NONMONOTONIC",
+    "num_cpus": 48,
+    "mhz_per_cpu": 2600,
+    "cpu_scaling_enabled": false,
+    "caches": [
+      {
+        "type": "Data",
+        "level": 1,
+        "size": 65536,
+        "num_sharing": 1
+      },
+      {
+        "type": "Instruction",
+        "level": 1,
+        "size": 65536,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 2,
+        "size": 524288,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 3,
+        "size": 25165824,
+        "num_sharing": 24
+      }
+    ],
+    "load_avg": [1142.68,379.57,141.21],
+    "library_build_type": "release"
+  },
+  "benchmarks": [
+    {
+      "name": "MatrixTranspose_Latency_OMP_GUIDED_NONMONOTONIC/process_time/real_time",
+      "family_index": 0,
+      "per_family_instance_index": 0,
+      "run_name": "MatrixTranspose_Latency_OMP_GUIDED_NONMONOTONIC/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 2,
+      "real_time": 2.7892229928180738e+05,
+      "cpu_time": 1.3388354440000001e+07,
+      "time_unit": "us"
+    },
+    {
+      "name": "MatrixTranspose_Throughput_OMP_GUIDED_NONMONOTONIC/min_time:9.000/process_time/real_time",
+      "family_index": 1,
+      "per_family_instance_index": 0,
+      "run_name": "MatrixTranspose_Throughput_OMP_GUIDED_NONMONOTONIC/min_time:9.000/process_time/real_time",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 50,
+      "real_time": 2.5896406546518867e+05,
+      "cpu_time": 1.2429813456199998e+07,
+      "time_unit": "us"
+    }
+  ]
+}
