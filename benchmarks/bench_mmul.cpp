@@ -3,7 +3,7 @@
 
 #include "parlay/parallel.h"
 
-static const size_t MATRIX_SIZE_HERE = (parlay::num_workers() << 3) + (parlay::num_workers()) + 7;
+static const size_t MATRIX_SIZE_HERE = parlay::num_workers() * 1 << 4;
 
 static void DoSetup(const benchmark::State &) {
   parlay::init_plugin();

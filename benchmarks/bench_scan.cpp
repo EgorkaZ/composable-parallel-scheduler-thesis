@@ -10,12 +10,12 @@ static void DoSetup(const benchmark::State &state) {
   parlay::init_plugin();
 }
 
+static auto data = SPMV::GenVector<double>(1 << SIZE_POW);
 static void BM_ScanBench(benchmark::State &state) {
-  static auto data = SPMV::GenVector<double>(1 << SIZE_POW);
-  benchmark::DoNotOptimize(data);
+  // benchmark::DoNotOptimize(data);
   for (auto _ : state) {
     Scan::Scan(state.range(0), data);
-    benchmark::ClobberMemory();
+    // benchmark::ClobberMemory();
   }
 }
 

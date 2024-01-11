@@ -11,29 +11,29 @@ static void DoSetup(const benchmark::State &state) {
 }
 
 static constexpr auto width =
-    std::array<size_t, 6>{1 << 12, 1 << 13, 1 << 14, 1 << 15, 1 << 16, 1 << 17};
+    std::array<size_t, 6>{1 << 10, 1 << 11, 1 << 12, 1 << 13, 1 << 14, 1 << 15};
 
 static auto cachedMatrix = [] {
   std::unordered_map<size_t, SparseMatrixCSR<double>> res;
   for (auto &&w : width) {
     res[w] =
-        GenSparseMatrix<double, SparseKind::TRIANGLE>(MATRIX_SIZE, w + (parlay::num_workers() << 2) + 3, DENSITY);
+        GenSparseMatrix<double, SparseKind::TRIANGLE>(MATRIX_SIZE, w, DENSITY);
     benchmark::DoNotOptimize(res[w]);
   }
   return res;
 }();
 
-static auto cachedVector = GenVector<double>(*std::prev(width.end()) + (parlay::num_workers() << 2) + 3);
+static auto cachedVector = GenVector<double>(MATRIX_SIZE);
 static std::vector<double> cachedResult(MATRIX_SIZE);
 
 static void BM_SpmvBenchTriangle(benchmark::State &state) {
-  benchmark::DoNotOptimize(cachedVector);
-  benchmark::DoNotOptimize(cachedResult);
+  // benchmark::DoNotOptimize(cachedVector);
+  // benchmark::DoNotOptimize(cachedResult);
 
   auto &A = cachedMatrix.at(state.range(0));
   for (auto _ : state) {
     MultiplyMatrix(A, cachedVector, cachedResult);
-    benchmark::ClobberMemory();
+    // benchmark::ClobberMemory();
   }
 }
 

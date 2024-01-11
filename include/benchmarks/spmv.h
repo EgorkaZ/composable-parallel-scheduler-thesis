@@ -281,7 +281,6 @@ template <typename T> DenseMatrix<T> GenDenseMatrix(size_t rows, size_t cols) {
   return out;
 }
 
-inline const size_t MATRIX_SIZE =
-    (parlay::num_workers() << 9) + (parlay::num_workers() << 4) + 7;
-inline constexpr double DENSITY = 1.0 / STEP;
+inline const size_t MATRIX_SIZE = parlay::num_workers() * 1 << 9;
+inline constexpr double DENSITY = 1.0 / (1 << 7);
 } // namespace SPMV

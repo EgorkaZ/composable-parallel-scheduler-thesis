@@ -19,18 +19,18 @@ static auto cachedMatrix = [] {
   for (auto &&w : width) {
     std::cout << "generating for " << w << std::endl;
     res[w] =
-        GenSparseMatrix<double, SparseKind::BALANCED>(MATRIX_SIZE, w + (parlay::num_workers() << 2) + 3, DENSITY);
+        GenSparseMatrix<double, SparseKind::BALANCED>(MATRIX_SIZE, w, DENSITY);
     benchmark::DoNotOptimize(res[w]);
   }
   return res;
 }();
 
-static auto x = GenVector<double>(*std::prev(width.end()) + (parlay::num_workers() << 2) + 3);
+static auto x = GenVector<double>(MATRIX_SIZE);
 static std::vector<double> y(MATRIX_SIZE);
 
 static void BM_SpmvBenchBalanced(benchmark::State &state) {
-  benchmark::DoNotOptimize(x);
-  benchmark::DoNotOptimize(y);
+  // benchmark::DoNotOptimize(x);
+  // benchmark::DoNotOptimize(y);
   
   auto &A = cachedMatrix.at(state.range(0));
   for (auto _ : state) {

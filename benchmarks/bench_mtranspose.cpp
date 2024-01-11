@@ -3,20 +3,22 @@
 #include "benchmarks/spmv.h"
 #include "parlay/parallel.h"
 
-static const size_t MATRIX_SIZE = (parlay::num_workers() << 4) + parlay::num_workers();
+static const size_t MATRIX_SIZE = parlay::num_workers() * 1 << 6;
 
 static void DoSetup(const benchmark::State &state) {
   parlay::init_plugin();
 }
 
+// cache data for all iterations
+static auto matrix = SPMV::GenDenseMatrix<double>(MATRIX_SIZE, MATRIX_SIZE);
+static auto out = SPMV::DenseMatrix<double>(MATRIX_SIZE, MATRIX_SIZE);
+
 static void BM_MatrixTranspose(benchmark::State &state) {
-  static auto matrix = SPMV::GenDenseMatrix<double>(MATRIX_SIZE, MATRIX_SIZE);
-  static auto out = SPMV::DenseMatrix<double>(MATRIX_SIZE, MATRIX_SIZE);
   benchmark::DoNotOptimize(matrix);
   benchmark::DoNotOptimize(out);
   for (auto _ : state) {
     SPMV::TransposeMatrix(matrix, out);
-    benchmark::ClobberMemory();
+    // benchmark::ClobberMemory();
   }
 }
 
