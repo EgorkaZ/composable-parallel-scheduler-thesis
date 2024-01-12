@@ -12,7 +12,8 @@ static void DoSetup(const benchmark::State &state) {
 }
 
 static constexpr auto width =
-    std::array<size_t, 6>{1 << 12, 1 << 13, 1 << 14, 1 << 15, 1 << 16, 1 << 17};
+     std::array<size_t, 6>{1 << 10, 1 << 11, 1 << 12, 1 << 13, 1 << 14, 1 << 15};
+static constexpr auto MAX_WIDTH = 1 << 15;
 
 static auto cachedMatrix = [] {
   std::unordered_map<size_t, SparseMatrixCSR<double>> res;
@@ -25,8 +26,8 @@ static auto cachedMatrix = [] {
   return res;
 }();
 
-static auto x = GenVector<double>(MATRIX_SIZE);
-static std::vector<double> y(MATRIX_SIZE);
+static auto x = GenVector<double>(MAX_WIDTH);
+static std::vector<double> y(MAX_WIDTH);
 
 static void BM_SpmvBenchBalanced(benchmark::State &state) {
   // benchmark::DoNotOptimize(x);
