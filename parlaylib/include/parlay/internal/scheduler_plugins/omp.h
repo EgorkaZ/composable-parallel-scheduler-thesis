@@ -40,55 +40,28 @@ inline void parallel_for(size_t start, size_t end, F&& f, long granularity, bool
 
   if (end == start + 1) {
     f(start);
+    return;
   }
-  else if ((end - start) <= static_cast<size_t>(granularity)) {
-    for (size_t i=start; i < end; i++) {
-      f(i);
-    }
-  }
-  // else if (!omp_in_parallel()) {
-  //   throw std::runtime_error{"!omp_in_parallel()"};
-  //   #pragma omp parallel
-  //   {
-  //     #pragma omp single
-  //     {
-  //       if (granularity <= 1) {
-  //         #pragma omp taskloop
-  //         for (size_t i = start; i < end; i++) {
-  //           f(i);
-  //         }
-  //       }
-  //       else {
-  //         #pragma omp taskloop grainsize(granularity)
-  //         for (size_t i = start; i < end; i++) {
-  //           f(i);
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
-  else {
-    // #pragma omp taskloop shared(f)
-    #pragma omp parallel
-    #if OMP_MODE == OMP_STATIC
-    #pragma omp for schedule(static)
-    #elif OMP_MODE == OMP_RUNTIME
-    #pragma omp for schedule(runtime)
-    #elif OMP_MODE == OMP_DYNAMIC_MONOTONIC
-    // TODO: chunk size?
-    #pragma omp for schedule(monotonic : dynamic)
-    #elif OMP_MODE == OMP_DYNAMIC_NONMONOTONIC
-    #pragma omp for schedule(nonmonotonic : dynamic)
-    #elif OMP_MODE == OMP_GUIDED_MONOTONIC
-    #pragma omp for schedule(monotonic : guided)
-    #elif OMP_MODE == OMP_GUIDED_NONMONOTONIC
-    #pragma omp for schedule(nonmonotonic : guided)
-    #else
-      static_assert(false, "Wrong OMP_MODE mode");
-    #endif
-    for (size_t i = start; i < end; i++) {
-      f(i);
-    }
+
+  #pragma omp parallel
+  #if OMP_MODE == OMP_STATIC
+  #pragma omp for schedule(static)
+  #elif OMP_MODE == OMP_RUNTIME
+  #pragma omp for schedule(runtime)
+  #elif OMP_MODE == OMP_DYNAMIC_MONOTONIC
+  // TODO: chunk size?
+  #pragma omp for schedule(monotonic : dynamic)
+  #elif OMP_MODE == OMP_DYNAMIC_NONMONOTONIC
+  #pragma omp for schedule(nonmonotonic : dynamic)
+  #elif OMP_MODE == OMP_GUIDED_MONOTONIC
+  #pragma omp for schedule(monotonic : guided)
+  #elif OMP_MODE == OMP_GUIDED_NONMONOTONIC
+  #pragma omp for schedule(nonmonotonic : guided)
+  #else
+    static_assert(false, "Wrong OMP_MODE mode");
+  #endif
+  for (size_t i = start; i < end; i++) {
+    f(i);
   }
 }
 
