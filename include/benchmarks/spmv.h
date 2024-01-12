@@ -58,7 +58,7 @@ template <typename T>
 void __attribute__((noinline, noipa))
 MultiplyMatrix(const SPMV::SparseMatrixCSR<T> &A, const std::vector<T> &x,
                std::vector<T> &out, size_t grainSize = 1) {
-  local_assert(A.Dimensions.Columns == x.size());
+  local_assert(A.Dimensions.Columns <= x.size());
   parlay::parallel_for(
       0, A.Dimensions.Rows, [&](size_t i) { out[i] = MultiplyRow(A, x, i); },
       grainSize);
