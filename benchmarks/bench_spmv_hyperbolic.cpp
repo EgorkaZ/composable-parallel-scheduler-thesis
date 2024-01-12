@@ -17,7 +17,7 @@ static auto cachedMatrix = [] {
   std::unordered_map<size_t, SparseMatrixCSR<double>> res;
   for (auto &&w : width) {
     res[w] =
-        GenSparseMatrix<double, SparseKind::HYPERBOLIC>(MATRIX_SIZE, w + (parlay::num_workers() << 2) + 3, DENSITY);
+        GenSparseMatrix<double, SparseKind::HYPERBOLIC>(MATRIX_SIZE, w, DENSITY);
     benchmark::DoNotOptimize(res[w]);
   }
   return res;
