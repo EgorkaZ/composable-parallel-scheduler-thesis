@@ -23,7 +23,7 @@ static auto cachedMatrix = [] {
   return res;
 }();
 
-static auto x = GenVector<double>(MATRIX_SIZE);
+static auto x = GenVector<double>(*std::prev(width.end()));
 static std::vector<double> y(MATRIX_SIZE);
 
 static void BM_SpmvBenchHyperbolic(benchmark::State &state) {

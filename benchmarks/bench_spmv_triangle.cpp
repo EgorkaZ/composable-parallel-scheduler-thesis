@@ -23,7 +23,7 @@ static auto cachedMatrix = [] {
   return res;
 }();
 
-static auto cachedVector = GenVector<double>(MATRIX_SIZE);
+static auto cachedVector = GenVector<double>(*std::prev(width.end()));
 static std::vector<double> cachedResult(MATRIX_SIZE);
 
 static void BM_SpmvBenchTriangle(benchmark::State &state) {

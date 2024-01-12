@@ -18,6 +18,8 @@
 
 namespace SPMV {
 
+inline constexpr size_t STEP = 9;
+
 struct MatrixDimensions {
   size_t Rows;
   size_t Columns;
@@ -169,45 +171,54 @@ inline thread_local std::default_random_engine RandomGenerator{
 
 template <typename T, SparseKind Kind>
 SparseMatrixCSR<T> GenSparseMatrix(size_t n, size_t m, double density) {
-  local_assert(0 <= density && density <= 1.0);
+  assert(0 <= density && density <= 1.0);
 
   SparseMatrixCSR<T> out;
   out.Dimensions.Rows = n;
   out.Dimensions.Columns = m;
   auto valueGen = std::uniform_real_distribution<T>(-1e9, 1e9);
 
-  std::set<std::pair<size_t, size_t>> positions;
+  std::vector<std::pair<size_t, size_t>> positions;
   size_t elements_n = n * m * density;
+  positions.reserve(elements_n + 100);
   if constexpr (Kind == SparseKind::BALANCED) {
-    auto posGen = std::uniform_int_distribution<size_t>(0, m - 1);
+    auto posGen = std::uniform_int_distribution<size_t>(0, STEP - 1);
     for (size_t i = 0; i != n; ++i) {
-      for (size_t j = 0; j != m * density; ++j) {
-        size_t col = posGen(RandomGenerator);
-        positions.insert({i, col});
+      for (size_t j = 0; j < m; j += STEP) {
+        size_t colOffset = posGen(RandomGenerator);
+        positions.push_back({i, std::min(j + colOffset, m - 1)});
       }
     }
-
   } else if constexpr (Kind == SparseKind::HYPERBOLIC) {
-    auto posGen = std::uniform_int_distribution<size_t>(0, m - 1);
     for (size_t i = 0; i != n; ++i) {
       // sum of elementsCount = density * n * m / std::log(n + 1) * (1 + 1/2 +
       // 1/3 + ... + 1/n) ~ density * n * m
       size_t elementsCount = density * n * m / std::log(n + 1) / (i + 1);
-      for (size_t j = 0; j != elementsCount; ++j) {
+      if (elementsCount == 0) {
+        continue;
+      }
+      size_t step = std::max(m / elementsCount, 1ul);
+      auto posGen = std::uniform_int_distribution<size_t>(0, step - 1);
+      for (size_t j = 0; j < m; j += step) {
         size_t pos = posGen(RandomGenerator);
-        positions.insert({i, pos});
+        positions.push_back({i, std::min(j + pos, m - 1)});
       }
     }
   } else if constexpr (Kind == SparseKind::TRIANGLE) {
-    auto posGen = std::uniform_int_distribution<size_t>(0, m - 1);
     for (size_t i = 0; i != n; ++i) {
       // distribute elements like triangle
       // sum of elementsCountInRow = density * m * 2 /n * (1 + 2 + 3 + ... + n)
       // ~ density * m * (n + 1)
-      size_t elementsCountInRow = density * m * (i + 1) * 2 / n;
-      for (size_t j = 0; j != elementsCountInRow; ++j) {
+      size_t width = std::min(i, m - 1);
+      size_t elementsCountInRow = density * m * (n - i) * 2 / n;
+      if (elementsCountInRow == 0) {
+        continue;
+      }
+      size_t step = std::max(width / elementsCountInRow, 1ul);
+      auto posGen = std::uniform_int_distribution<size_t>(0, step - 1);
+      for (size_t j = 0; j <= width; j += step) {
         size_t pos = posGen(RandomGenerator);
-        positions.insert({i, pos});
+        positions.push_back({i, std::min(j + pos, width)});
       }
     }
   } else {
@@ -217,8 +228,12 @@ SparseMatrixCSR<T> GenSparseMatrix(size_t n, size_t m, double density) {
                   Kind == SparseKind::TRIANGLE);
   }
 
-  out.RowIndex.reserve(n + 1);
+
+  std::sort(positions.begin(), positions.end());
+  out.RowIndex.reserve(n + 20);
   out.RowIndex.push_back(0);
+  out.Values.reserve(1000 + density * n * m);
+  out.ColumnIndex.reserve(1000 + density * n * m);
   for (auto it = positions.begin(); it != positions.end(); ++it) {
     auto [i, j] = *it;
     while (i > out.RowIndex.size() - 1) {
