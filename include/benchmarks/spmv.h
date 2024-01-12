@@ -7,16 +7,16 @@
 #include <cstddef>
 #include <functional>
 #include <random>
+#include <stdexcept>
 #include <type_traits>
 #include <utility>
+#include <set>
 #include <vector>
 #include <iostream>
 
 #include <mutex>
 
 namespace SPMV {
-
-inline constexpr size_t STEP = 9;
 
 struct MatrixDimensions {
   size_t Rows;
@@ -48,11 +48,17 @@ T MultiplyRow(const SPMV::SparseMatrixCSR<T> &A, const std::vector<T> &x,
   return y;
 }
 
+void local_assert(bool cond) {
+  if (!cond) [[unlikely]] {
+    throw std::runtime_error{"bad local_assert"};
+  }
+}
+
 template <typename T>
 void __attribute__((noinline, noipa))
 MultiplyMatrix(const SPMV::SparseMatrixCSR<T> &A, const std::vector<T> &x,
                std::vector<T> &out, size_t grainSize = 1) {
-  assert(A.Dimensions.Columns == x.size());
+  local_assert(A.Dimensions.Columns == x.size());
   parlay::parallel_for(
       0, A.Dimensions.Rows, [&](size_t i) { out[i] = MultiplyRow(A, x, i); },
       grainSize);
@@ -97,8 +103,8 @@ template <typename T>
 void __attribute__((noinline, noipa))
 TransposeMatrix(SPMV::DenseMatrix<T> &input, SPMV::DenseMatrix<T> &out,
                 size_t blocks = 16, size_t grainSize = 1) {
-  assert(input.Dimensions.Rows == out.Dimensions.Columns);
-  assert(input.Dimensions.Columns == out.Dimensions.Rows);
+  local_assert(input.Dimensions.Rows == out.Dimensions.Columns);
+  local_assert(input.Dimensions.Columns == out.Dimensions.Rows);
   auto blocksRows = std::min(blocks, input.Dimensions.Rows);
   auto blocksColumns = std::min(blocks, input.Dimensions.Columns);
   auto blockRowSize = (input.Dimensions.Rows + blocksRows - 1) / blocksRows;
@@ -163,55 +169,45 @@ inline thread_local std::default_random_engine RandomGenerator{
 
 template <typename T, SparseKind Kind>
 SparseMatrixCSR<T> GenSparseMatrix(size_t n, size_t m, double density) {
-  assert(0 <= density && density <= 1.0);
-  auto start = std::chrono::high_resolution_clock::now();
+  local_assert(0 <= density && density <= 1.0);
 
   SparseMatrixCSR<T> out;
   out.Dimensions.Rows = n;
   out.Dimensions.Columns = m;
   auto valueGen = std::uniform_real_distribution<T>(-1e9, 1e9);
 
-  std::vector<std::pair<size_t, size_t>> positions;
+  std::set<std::pair<size_t, size_t>> positions;
   size_t elements_n = n * m * density;
-  positions.reserve(elements_n + 100);
   if constexpr (Kind == SparseKind::BALANCED) {
-    auto posGen = std::uniform_int_distribution<size_t>(0, STEP - 1);
+    auto posGen = std::uniform_int_distribution<size_t>(0, m - 1);
     for (size_t i = 0; i != n; ++i) {
-      for (size_t j = 0; j < m; j += STEP) {
-        size_t colOffset = posGen(RandomGenerator);
-        positions.push_back({i, std::min(j + colOffset, m - 1)});
+      for (size_t j = 0; j != m * density; ++j) {
+        size_t col = posGen(RandomGenerator);
+        positions.insert({i, col});
       }
     }
+
   } else if constexpr (Kind == SparseKind::HYPERBOLIC) {
+    auto posGen = std::uniform_int_distribution<size_t>(0, m - 1);
     for (size_t i = 0; i != n; ++i) {
       // sum of elementsCount = density * n * m / std::log(n + 1) * (1 + 1/2 +
       // 1/3 + ... + 1/n) ~ density * n * m
       size_t elementsCount = density * n * m / std::log(n + 1) / (i + 1);
-      if (elementsCount == 0) {
-        continue;
-      }
-      size_t step = std::max(m / elementsCount, 1ul);
-      auto posGen = std::uniform_int_distribution<size_t>(0, step - 1);
-      for (size_t j = 0; j < m; j += step) {
+      for (size_t j = 0; j != elementsCount; ++j) {
         size_t pos = posGen(RandomGenerator);
-        positions.push_back({i, std::min(j + pos, m - 1)});
+        positions.insert({i, pos});
       }
     }
   } else if constexpr (Kind == SparseKind::TRIANGLE) {
+    auto posGen = std::uniform_int_distribution<size_t>(0, m - 1);
     for (size_t i = 0; i != n; ++i) {
       // distribute elements like triangle
       // sum of elementsCountInRow = density * m * 2 /n * (1 + 2 + 3 + ... + n)
       // ~ density * m * (n + 1)
-      size_t width = std::min(i, m - 1);
-      size_t elementsCountInRow = density * m * (n - i) * 2 / n;
-      if (elementsCountInRow == 0) {
-        continue;
-      }
-      size_t step = std::max(width / elementsCountInRow, 1ul);
-      auto posGen = std::uniform_int_distribution<size_t>(0, step - 1);
-      for (size_t j = 0; j <= width; j += step) {
+      size_t elementsCountInRow = density * m * (i + 1) * 2 / n;
+      for (size_t j = 0; j != elementsCountInRow; ++j) {
         size_t pos = posGen(RandomGenerator);
-        positions.push_back({i, std::min(j + pos, width)});
+        positions.insert({i, pos});
       }
     }
   } else {
@@ -221,11 +217,8 @@ SparseMatrixCSR<T> GenSparseMatrix(size_t n, size_t m, double density) {
                   Kind == SparseKind::TRIANGLE);
   }
 
-  std::sort(positions.begin(), positions.end());
-  out.RowIndex.reserve(n + 20);
+  out.RowIndex.reserve(n + 1);
   out.RowIndex.push_back(0);
-  out.Values.reserve(1000 + density * n * m);
-  out.ColumnIndex.reserve(1000 + density * n * m);
   for (auto it = positions.begin(); it != positions.end(); ++it) {
     auto [i, j] = *it;
     while (i > out.RowIndex.size() - 1) {
@@ -238,12 +231,6 @@ SparseMatrixCSR<T> GenSparseMatrix(size_t n, size_t m, double density) {
     out.RowIndex.push_back(out.ColumnIndex.size());
   }
 
-  std::cout << "Generated sparse matrix " << n << "x" << m << " with "
-            << out.Values.size() << " elements in of kind " << int(Kind)
-            << std::chrono::duration_cast<std::chrono::milliseconds>(
-                   std::chrono::high_resolution_clock::now() - start)
-                   .count()
-            << "ms\n";
   return out;
 }
 
