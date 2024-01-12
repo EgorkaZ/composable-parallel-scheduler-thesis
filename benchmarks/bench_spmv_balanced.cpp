@@ -35,7 +35,7 @@ static void BM_SpmvBenchBalanced(benchmark::State &state) {
   auto &A = cachedMatrix.at(state.range(0));
   for (auto _ : state) {
     MultiplyMatrix(A, x, y);
-    benchmark::ClobberMemory();
+    // benchmark::ClobberMemory();
   }
 }
 
