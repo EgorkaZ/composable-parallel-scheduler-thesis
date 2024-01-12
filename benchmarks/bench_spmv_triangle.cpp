@@ -27,13 +27,13 @@ static auto cachedVector = GenVector<double>(*std::prev(width.end()));
 static std::vector<double> cachedResult(MATRIX_SIZE);
 
 static void BM_SpmvBenchTriangle(benchmark::State &state) {
-  // benchmark::DoNotOptimize(cachedVector);
-  // benchmark::DoNotOptimize(cachedResult);
+  benchmark::DoNotOptimize(cachedVector);
+  benchmark::DoNotOptimize(cachedResult);
 
   auto &A = cachedMatrix.at(state.range(0));
   for (auto _ : state) {
     MultiplyMatrix(A, cachedVector, cachedResult);
-    // benchmark::ClobberMemory();
+    benchmark::ClobberMemory();
   }
 }
 

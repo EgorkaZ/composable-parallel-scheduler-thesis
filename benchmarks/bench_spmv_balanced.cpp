@@ -30,13 +30,13 @@ static auto x = GenVector<double>(*std::prev(width.end()));
 static std::vector<double> y(MATRIX_SIZE);
 
 static void BM_SpmvBenchBalanced(benchmark::State &state) {
-  // benchmark::DoNotOptimize(x);
-  // benchmark::DoNotOptimize(y);
+  benchmark::DoNotOptimize(x);
+  benchmark::DoNotOptimize(y);
   
   auto &A = cachedMatrix.at(state.range(0));
   for (auto _ : state) {
     MultiplyMatrix(A, x, y);
-    // benchmark::ClobberMemory();
+    benchmark::ClobberMemory();
   }
 }
 
