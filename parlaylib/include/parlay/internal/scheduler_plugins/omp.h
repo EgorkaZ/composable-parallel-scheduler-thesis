@@ -46,27 +46,27 @@ inline void parallel_for(size_t start, size_t end, F&& f, long granularity, bool
       f(i);
     }
   }
-  else if (!omp_in_parallel()) {
-    throw std::runtime_error{"!omp_in_parallel()"};
-    #pragma omp parallel
-    {
-      #pragma omp single
-      {
-        if (granularity <= 1) {
-          #pragma omp taskloop
-          for (size_t i = start; i < end; i++) {
-            f(i);
-          }
-        }
-        else {
-          #pragma omp taskloop grainsize(granularity)
-          for (size_t i = start; i < end; i++) {
-            f(i);
-          }
-        }
-      }
-    }
-  }
+  // else if (!omp_in_parallel()) {
+  //   throw std::runtime_error{"!omp_in_parallel()"};
+  //   #pragma omp parallel
+  //   {
+  //     #pragma omp single
+  //     {
+  //       if (granularity <= 1) {
+  //         #pragma omp taskloop
+  //         for (size_t i = start; i < end; i++) {
+  //           f(i);
+  //         }
+  //       }
+  //       else {
+  //         #pragma omp taskloop grainsize(granularity)
+  //         for (size_t i = start; i < end; i++) {
+  //           f(i);
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
   else {
     // #pragma omp taskloop shared(f)
     #pragma omp parallel
