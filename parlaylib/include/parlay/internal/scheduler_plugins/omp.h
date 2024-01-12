@@ -13,6 +13,7 @@
 
 #include <omp.h>
 
+#include <stdexcept>
 #include <type_traits>
 #include <utility>
 #include <cassert>
@@ -46,7 +47,7 @@ inline void parallel_for(size_t start, size_t end, F&& f, long granularity, bool
     }
   }
   else if (!omp_in_parallel()) {
-    assert(false);
+    throw std::runtime_error{"!omp_in_parallel()"};
     #pragma omp parallel
     {
       #pragma omp single
