@@ -110,3 +110,4 @@ function(add_target target exec mode)
 endfunction()
 
 add_subdirectory(benchmarks)
+add_subdirectory(timespan_tuner)

@@ -17,7 +17,7 @@ static void RunOnce(size_t threadNum, std::vector<Timestamp> *times) {
 #endif
   std::atomic<size_t> reported(0);
   auto start = Now();
-  ParallelFor(0, threadNum, [&](size_t i) {
+  parlay::parallel_for(0, threadNum, [&](size_t i) {
     auto now = Now();
     if (times) {
       (*times)[i] = now - start;
@@ -37,7 +37,7 @@ static size_t PercentileIndex(double pc, size_t size) {
 
 int main() {
   auto threadNum = parlay::num_workers();
-  InitParallel(threadNum);
+  // InitParallel(threadNum);
   constexpr size_t ITERATIONS = 10000;
 
   for (size_t i = 0; i != 10; ++i) {
